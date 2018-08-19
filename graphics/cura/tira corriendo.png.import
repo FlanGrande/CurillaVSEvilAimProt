@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/tira corriendo.png-5f9bf8b2cd9bfda58bce0cc0065c1ab8.stex"
+
+[deps]
+
+source_file="res://graphics/cura/tira corriendo.png"
+source_md5="091a3bdb6cc1ba23caf36ebb9705c261"
+
+dest_files=[ "res://.import/tira corriendo.png-5f9bf8b2cd9bfda58bce0cc0065c1ab8.stex" ]
+dest_md5="7d8345991b1b066021c856876861baa8"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

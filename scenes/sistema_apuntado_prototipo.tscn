@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="bg" type="Sprite" parent="." index="0"]
+
+position = Vector2( 1067.54, 204.883 )
+scale = Vector2( 1.11203, 0.732136 )
+texture = ExtResource( 1 )
+
+[node name="cura2D" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 336.425, 532.394 )
+
+[node name="Camera2D" type="Camera2D" parent="cura2D" index="3"]
+
+offset = Vector2( 0, -120 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.6, 0.6 )
+limit_left = 0
+limit_top = -10000000
+limit_right = 2130
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Limit" ]
+
+
