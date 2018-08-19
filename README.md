@@ -1,0 +1,2 @@
+# CurillaVSEvilAimProt
+Aiming prototype
