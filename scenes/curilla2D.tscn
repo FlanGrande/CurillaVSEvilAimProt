@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://scenes/curilla2D.gd" type="Script" id=1]
+[ext_resource path="res://scripts/curilla2D.gd" type="Script" id=1]
 [ext_resource path="res://graphics/cura/apuntando.png" type="Texture" id=2]
 [ext_resource path="res://animation/idle.tres" type="Animation" id=3]
 [ext_resource path="res://graphics/cura/tira corriendo.png" type="Texture" id=4]
@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 2.62759, 22.8706 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 
 resource_name = "aimDown"
 length = 1.0
@@ -66,7 +66,7 @@ tracks/3/keys = {
 "values": [ 8 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 
 resource_name = "aimDownForward"
 length = 1.0
@@ -121,9 +121,8 @@ tracks/3/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
-resource_name = "aimForward"
 length = 1.0
 loop = false
 step = 0.1
@@ -176,9 +175,8 @@ tracks/3/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource_name = "aimUp"
 length = 1.0
 loop = false
 step = 0.1
@@ -231,9 +229,8 @@ tracks/3/keys = {
 "values": [ ExtResource( 2 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource_name = "aimUpForward"
 length = 1.0
 loop = false
 step = 0.1
@@ -286,9 +283,8 @@ tracks/3/keys = {
 "values": [ 12 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=7]
 
-resource_name = "run"
 length = 0.9
 loop = true
 step = 0.15
@@ -341,7 +337,7 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
-[node name="cura2D" type="KinematicBody2D" index="0"]
+[node name="cura2D" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -369,13 +365,13 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/aimDown = SubResource( 6 )
-anims/aimDownForward = SubResource( 7 )
-anims/aimForward = SubResource( 3 )
-anims/aimUp = SubResource( 4 )
-anims/aimUpForward = SubResource( 5 )
+anims/aimDown = SubResource( 2 )
+anims/aimDownForward = SubResource( 3 )
+anims/aimForward = SubResource( 4 )
+anims/aimUp = SubResource( 5 )
+anims/aimUpForward = SubResource( 6 )
 anims/idle = ExtResource( 3 )
-anims/run = SubResource( 2 )
+anims/run = SubResource( 7 )
 anims/walk = ExtResource( 5 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]

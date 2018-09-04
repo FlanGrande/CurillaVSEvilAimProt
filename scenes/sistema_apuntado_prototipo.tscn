@@ -3,7 +3,7 @@
 [ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="bg" type="Sprite" parent="." index="0"]
 
@@ -15,17 +15,16 @@ texture = ExtResource( 1 )
 
 position = Vector2( 336.425, 532.394 )
 
-[node name="Camera2D" type="Camera2D" parent="cura2D" index="3"]
+[node name="camera" type="Camera2D" parent="cura2D" index="3"]
 
-offset = Vector2( 0, -120 )
 anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 0.6, 0.6 )
 limit_left = 0
-limit_top = -10000000
+limit_top = -190
 limit_right = 2130
-limit_bottom = 10000000
+limit_bottom = 600
 limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -38,8 +37,8 @@ drag_margin_top = 0.2
 drag_margin_right = 0.2
 drag_margin_bottom = 0.2
 editor_draw_screen = true
-editor_draw_limits = false
+editor_draw_limits = true
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Limit" ]
+_sections_unfolded = [ "Editor", "Limit" ]
 
 
