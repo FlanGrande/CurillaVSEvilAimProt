@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=1]
-[ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
+[ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="bg" type="Sprite" parent="." index="0"]
 
 position = Vector2( 1067.54, 204.883 )
 scale = Vector2( 1.11203, 0.732136 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
-[node name="cura2D" parent="." index="1" instance=ExtResource( 2 )]
+[node name="cura2D" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 336.425, 532.394 )
+position = Vector2( 336, 532 )
+_sections_unfolded = [ "Transform", "collision" ]
 
 

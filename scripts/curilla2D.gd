@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 # camera variables
 var cam_target_position = Vector2(0.0, 0.0) #Position the camera is moving to
-var cam_max_range = 45 #Max distance from the character to the camera. Not used for now. Maximum recommended is about 50. Minimum 0.
+var cam_max_range = Vector2(46, 46) #Max distance from the character to the camera. Not used for now. Maximum recommended is about 50. Minimum 0.
 onready var camera = get_node("camera")
 
 # movement variables
@@ -17,6 +17,7 @@ var input_y = false #Player is not making any input on y axis
 
 # aiming system variables
 var priest_shoulder #Point of origin from where the aiming system takes the angles
+var shoulder_offset = -12
 var aiming_vector = Vector2(0, 0) #Vector from the character origin to the mouse 
 var angle_to_vector_x_radians = 0
 var angle_to_vector_x_degrees = 0
@@ -125,7 +126,7 @@ func aim_checks():
 		aiming = true
 		max_speed = Vector2(0, 100)	#Stop the priest
 		mouse_position = get_global_mouse_position()
-		priest_shoulder = Vector2(global_position.x, global_position.y - 12)
+		priest_shoulder = Vector2(global_position.x, global_position.y + shoulder_offset)
 		aiming_vector = mouse_position - priest_shoulder
 		angle_to_vector_x_radians = (aiming_vector).normalized()
 		angle_to_vector_x_degrees = angle_to_vector_x_radians.angle_to(x_vector) * 180/PI #Convert radians to angles
@@ -153,9 +154,13 @@ func aim_checks():
 
 func camera_checks():
 	cam_target_position = global_position #Default position if not aiming (follow the character)
+	mouse_position = get_global_mouse_position()
+	priest_shoulder = Vector2(global_position.x, global_position.y - shoulder_offset)
+	aiming_vector = mouse_position - priest_shoulder
 	
 	if(aiming):
-		cam_target_position = global_position + aiming_vector * cam_max_range/100
+		cam_target_position.x = global_position.x + aiming_vector.x * cam_max_range.x/100
+		cam_target_position.y = global_position.y + aiming_vector.y * cam_max_range.y/100
 	
 	camera.global_position = cam_target_position
 
