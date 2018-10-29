@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec3 color = vec3(0.50, 0.45, 0.65);
+uniform vec3 color = vec3(0.30, 0.45, 0.60);
 //uniform vec3 color = vec3(1.0, 1.0, 1.0);
 uniform int OCTAVES = 4;
 
