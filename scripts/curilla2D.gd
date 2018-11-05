@@ -57,6 +57,10 @@ var angles_dict = {
 	"345" : "aim350"
 }
 
+#shooting variables
+onready var particles_shoot = get_node("Particles_shoot")
+var shooting = false
+
 # mouse variables
 var mouse_position = Vector2(0.0, 0.0)
 
@@ -79,6 +83,7 @@ func move_input(delta):
 	movement_checks() #Move left or right. Is character running?
 	aim_checks() #Aim in 360 degrees.
 	camera_checks()
+	shoot_checks()
 	
 	#Max x speed
 	if (abs(char_speed.x) > max_speed.x):
@@ -139,6 +144,7 @@ func aim_checks():
 			right = true #Looking to right
 			get_node("Sprite").set_flip_h(false) #Looking to right
 		else:
+			invert_shooting_particles()
 			right = false #Looking to left
 			get_node("Sprite").set_flip_h(true) #Looking to left
 		
@@ -152,6 +158,14 @@ func aim_checks():
 	else:
 		aiming = false
 
+func shoot_checks():
+	if(Input.is_action_just_pressed("shoot") and not shooting and aiming):
+		shooting = true
+		particles_shoot.emitting = true
+		
+	else:
+		shooting = false
+
 func camera_checks():
 	cam_target_position = global_position #Default position if not aiming (follow the character)
 	mouse_position = get_global_mouse_position()
@@ -163,6 +177,10 @@ func camera_checks():
 		cam_target_position.y = global_position.y + aiming_vector.y * cam_max_range.y/100
 	
 	camera.global_position = cam_target_position
+
+func invert_shooting_particles():
+	particles_shoot.position = Vector2(particles_shoot.position.x * -1, particles_shoot.position.y)
+	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
 
 func change_anim(newanim):
 	#If the animation is new,
