@@ -6,10 +6,10 @@ var cam_max_range = Vector2(46, 46) #Max distance from the character to the came
 onready var camera = get_node("camera")
 
 # movement variables
-const MAX_SPEED_WALK = Vector2(150, 100) #Character maximum allowed speed when walking
+const MAX_SPEED_WALK = Vector2(100, 100) #Character maximum allowed speed when walking
 const MAX_SPEED_RUN = Vector2(250, 100) #Character maximum allowed speed when running
 var max_speed = MAX_SPEED_WALK #Current max_speed
-var char_acceleration = Vector2(20.0, 0.8) #Character acceleration
+var char_acceleration = Vector2(8.0, 0.8) #Character acceleration
 var char_speed = Vector2(0.0, 0.0) #Current character speed
 var right = true #Direction character is facing
 var input_x = false #Player is not making any input on x axis
@@ -94,8 +94,9 @@ func movement_checks():
 		change_anim("run")
 		max_speed = MAX_SPEED_RUN
 	else:
-		change_anim("walk") #Walk anim
-		max_speed = MAX_SPEED_WALK
+		if (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
+			change_anim("walk") #Walk anim
+			max_speed = MAX_SPEED_WALK
 		
 	if (Input.is_action_pressed("ui_right")):
 		right = true #Looking to right
@@ -167,12 +168,8 @@ func camera_checks():
 func change_anim(newanim):
 	#If the animation is new,
 	if (newanim != get_node("AnimationPlayer").get_current_animation()):
+		#print(newanim)
 		get_node("AnimationPlayer").play(newanim) #Change it!
-
-func change_camera_anim(newanim):
-	#If the animation is new,
-	if (newanim != get_node("AnimationCamera").get_current_animation()):
-		get_node("AnimationCamera").play(newanim) #Change it!
 
 func is_character_idle():
 	return not input_x and not input_y and not Input.is_action_pressed("aim")
