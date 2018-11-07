@@ -9,13 +9,13 @@
 [sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0, 1 )
-colors = PoolColorArray( 0.988281, 0.953748, 0.104233, 1, 0.890625, 0.578058, 0.0904541, 0.784549, 1, 0.0664063, 0.0664063, 0.535922 )
+colors = PoolColorArray( 1, 0, 0, 1, 0.992188, 1, 0, 0.784549, 1, 0.375, 0, 0.535922 )
 
 [sub_resource type="GradientTexture" id=2]
 
 flags = 4
 gradient = SubResource( 1 )
-width = 2048
+width = 1024
 _sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -26,10 +26,10 @@ emission_shape = 0
 flag_align_y = false
 flag_rotate_y = false
 flag_disable_z = true
-spread = 15.0
+spread = 30.0
 flatness = 0.0
-gravity = Vector3( 90, 0, 0 )
-initial_velocity = 60.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
 initial_velocity_random = 0.2
 angular_velocity = 0.0
 angular_velocity_random = 0.0
@@ -41,8 +41,8 @@ radial_accel = 0.0
 radial_accel_random = 0.0
 tangential_accel = 0.0
 tangential_accel_random = 0.0
-damping = 100.0
-damping_random = 1.0
+damping = 0.0
+damping_random = 0.0
 angle = 45.0
 angle_random = 0.5
 scale = 1.5
@@ -55,7 +55,7 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Color", "Emission Shape", "Flags", "Gravity", "Scale", "Spread", "Trail" ]
+_sections_unfolded = [ "Color", "Flags", "Initial Velocity", "Scale", "Trail" ]
 
 [sub_resource type="RectangleShape2D" id=4]
 
@@ -1149,12 +1149,12 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform",
 
 position = Vector2( 13.0281, -13.0829 )
 emitting = false
-amount = 32
+amount = 16
 lifetime = 0.3
 one_shot = true
 preprocess = 0.0
 speed_scale = 3.0
-explosiveness = 0.5
+explosiveness = 0.6
 randomness = 0.0
 fixed_fps = 60
 fract_delta = true
