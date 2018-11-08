@@ -1,16 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/curilla2D.gd" type="Script" id=1]
-[ext_resource path="res://tres_files/aim_arm.tres" type="Texture" id=2]
-[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=3]
-[ext_resource path="res://animation/idle.tres" type="Animation" id=4]
-[ext_resource path="res://tres_files/run.tres" type="Texture" id=5]
+[ext_resource path="res://tres_files/run.tres" type="Texture" id=2]
+[ext_resource path="res://tres_files/aim_arm.tres" type="Texture" id=3]
+[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=4]
+[ext_resource path="res://animation/idle.tres" type="Animation" id=5]
 [ext_resource path="res://animation/walk.tres" type="Animation" id=6]
-
-[sub_resource type="StreamTexture" id=15]
-
-flags = 0
-load_path = "res://.import/run.png-f403397987ee2d1fbcce33f7e2c20905.stex"
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -32,7 +27,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -147,7 +142,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -261,7 +256,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -376,7 +371,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -491,7 +486,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -606,7 +601,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -721,7 +716,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -836,7 +831,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -951,7 +946,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1066,7 +1061,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1181,7 +1176,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1296,7 +1291,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1410,7 +1405,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1510,7 +1505,7 @@ _sections_unfolded = [ "collision" ]
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 position = Vector2( -1, -14 )
-texture = SubResource( 15 )
+texture = ExtResource( 2 )
 hframes = 8
 frame = 7
 region_rect = Rect2( 5, 0, 21, 41 )
@@ -1520,7 +1515,7 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform",
 
 visible = false
 position = Vector2( -1.20922, -20.7802 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 hframes = 12
 frame = 5
 _sections_unfolded = [ "Animation", "Visibility" ]
@@ -1550,7 +1545,7 @@ anims/aim60 = SubResource( 10 )
 anims/aim70 = SubResource( 11 )
 anims/aim80 = SubResource( 12 )
 anims/aim90 = SubResource( 13 )
-anims/idle = ExtResource( 4 )
+anims/idle = ExtResource( 5 )
 anims/run = SubResource( 14 )
 anims/walk = ExtResource( 6 )
 blend_times = [  ]

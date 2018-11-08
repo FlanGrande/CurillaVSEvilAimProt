@@ -4,7 +4,7 @@
 [ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
