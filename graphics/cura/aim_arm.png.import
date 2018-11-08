@@ -7,19 +7,19 @@ path="res://.import/aim_arm.png-cd2a4c064422c4e07135b8f85e566429.stex"
 [deps]
 
 source_file="res://graphics/cura/aim_arm.png"
-source_md5="1194449a592b57e00dba2072bc879702"
+source_md5="c1e664ba01d15e6947a6b7d72bae1928"
 
 dest_files=[ "res://.import/aim_arm.png-cd2a4c064422c4e07135b8f85e566429.stex" ]
-dest_md5="d4854dd1d53298ddcedce8ccf3e2f795"
+dest_md5="f6135173fe4283285b9319ad789f124b"
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

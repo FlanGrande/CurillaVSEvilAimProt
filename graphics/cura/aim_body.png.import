@@ -7,19 +7,19 @@ path="res://.import/aim_body.png-5c351d9a1fd3537e3be4bb1cc0ca9e41.stex"
 [deps]
 
 source_file="res://graphics/cura/aim_body.png"
-source_md5="8c885d99a0b6742b4d82d262340470ce"
+source_md5="7147b79626fecfa1146f88c32b7cfb6b"
 
 dest_files=[ "res://.import/aim_body.png-5c351d9a1fd3537e3be4bb1cc0ca9e41.stex" ]
-dest_md5="334594e7dc3c60a04281824f41c8cc22"
+dest_md5="9140f39b5a8d183829ddd6ae3322c904"
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

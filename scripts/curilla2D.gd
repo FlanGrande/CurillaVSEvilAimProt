@@ -16,8 +16,8 @@ var input_x = false #Player is not making any input on x axis
 var input_y = false #Player is not making any input on y axis
 
 # aiming system variables
-var priest_shoulder #Point of origin from where the aiming system takes the angles
-var shoulder_offset = -12
+var priest_shoulder #Point of origin from where the aiming system takes the angles. A sweet spot between shoulders and head, probably.
+var shoulder_offset = -30
 var aiming_vector = Vector2(0, 0) #Vector from the character origin to the mouse 
 var angle_to_vector_x_radians = 0
 var angle_to_vector_x_degrees = 0
@@ -44,7 +44,7 @@ var angles_dict = {
 	"160" : "aim30",
 	"180" : "aim0",
 	"195" : "aim350",
-	"205" : "aim340",
+	"205" : "aim350",
 	"220" : "aim330",
 	"230" : "aim315",
 	"250" : "aim300",
@@ -53,7 +53,7 @@ var angles_dict = {
 	"290": "aim300",
 	"310" : "aim315",
 	"320" : "aim330",
-	"335" : "aim340",
+	"335" : "aim350",
 	"345" : "aim350"
 }
 
@@ -136,16 +136,20 @@ func aim_checks():
 		if(angle_to_vector_x_degrees < 0): #If angle to X axis is less than 0, add 360 degrees to make it positive
 			angle_to_vector_x_degrees = angle_to_vector_x_degrees + 360
 		
+		#print(angle_to_vector_x_degrees)
+		
 		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
 			right = true #Looking to right
 			get_node("Sprite").set_flip_h(false) #Looking to right
+			get_node("aiming_arm").set_flip_h(false) #Looking to right
 		else:
 			right = false #Looking to left
 			get_node("Sprite").set_flip_h(true) #Looking to left
+			get_node("aiming_arm").set_flip_h(true) #Looking to right
 		
-		for i in range(0, angles_dict.size()-1):
+		for i in range(0, angles_dict.size()):
 			if(angle_to_vector_x_degrees < int(angles_array[i])):
-				var angle_to_show = angles_dict[angles_array[i-1]]
+				var angle_to_show = angles_dict[angles_array[i - 1]]
 				change_anim(angle_to_show)
 				break
 			else:

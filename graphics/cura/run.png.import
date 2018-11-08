@@ -10,16 +10,16 @@ source_file="res://graphics/cura/run.png"
 source_md5="4ad24c89b4f41465e1238133d166e620"
 
 dest_files=[ "res://.import/run.png-f403397987ee2d1fbcce33f7e2c20905.stex" ]
-dest_md5="dd1e93f9de9742db28dbe3e49651fe81"
+dest_md5="e7f724a332c38e59cf40f6388d3f7767"
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
