@@ -24,6 +24,7 @@ var angle_to_vector_x_degrees = 0
 var x_vector = Vector2(1, 0)
 var angles_array = [] #Array that contains the keys of the angles_dict variable. Represents the available angles to pick from animations.
 var aiming = false #Is character aiming?
+var aiming_arm_offset_when_flip_h = -1;
 
 #angles from 0 to 360 and animations names to use
 #The idea behind this is to compare the keys and use the proper animation.
@@ -184,7 +185,7 @@ func camera_checks():
 	camera.global_position = cam_target_position
 
 func invert_shooting_particles():
-	particles_shoot.position = Vector2(particles_shoot.position.x * -1, particles_shoot.position.y)
+	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + aiming_arm_offset_when_flip_h, particles_shoot.position.y)
 	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
 
 func change_anim(newanim):

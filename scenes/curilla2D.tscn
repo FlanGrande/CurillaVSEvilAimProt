@@ -1,16 +1,67 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scripts/curilla2D.gd" type="Script" id=1]
-[ext_resource path="res://tres_files/run.tres" type="Texture" id=2]
+[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=2]
 [ext_resource path="res://tres_files/aim_arm.tres" type="Texture" id=3]
-[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=4]
-[ext_resource path="res://animation/idle.tres" type="Animation" id=5]
+[ext_resource path="res://animation/idle.tres" type="Animation" id=4]
+[ext_resource path="res://tres_files/run.tres" type="Texture" id=5]
 [ext_resource path="res://animation/walk.tres" type="Animation" id=6]
+
+[sub_resource type="Gradient" id=15]
+
+offsets = PoolRealArray( 0, 0, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0.992188, 1, 0, 0.784549, 1, 0.375, 0, 0.535922 )
+
+[sub_resource type="GradientTexture" id=16]
+
+flags = 4
+gradient = SubResource( 15 )
+width = 1024
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ParticlesMaterial" id=17]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 30.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+initial_velocity_random = 0.2
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 45.0
+angle_random = 0.5
+scale = 1.5
+scale_random = 1.0
+color_ramp = SubResource( 16 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Flags", "Initial Velocity", "Scale", "Trail" ]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 24.9381, 21.5268 )
+extents = Vector2( 4.66135, 29.4877 )
 
 [sub_resource type="Animation" id=2]
 
@@ -27,7 +78,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -135,7 +186,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 13.0281, -13.0829 ) ]
+"values": [ Vector2( 23.7682, -24.8405 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -165,7 +216,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -263,6 +314,30 @@ tracks/8/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("Particles_shoot:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.330326, 2.97733 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 90.0 ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -279,7 +354,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -387,7 +462,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11.6655, -19.1054 ) ]
+"values": [ Vector2( 21.3816, -32.2915 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -399,7 +474,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -25.0 ]
+"values": [ -40.0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -417,7 +492,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -525,7 +600,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 7.82251, 5.01157 ) ]
+"values": [ Vector2( 5.75796, 2.03075 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -555,7 +630,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -663,7 +738,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 11.2307, 0.921707 ) ]
+"values": [ Vector2( 14.4191, -2.17686 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -693,7 +768,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -801,7 +876,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 12.9349, -2.14569 ) ]
+"values": [ Vector2( 18.9524, -6.50165 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -831,7 +906,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -939,7 +1014,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 13.9573, -5.55391 ) ]
+"values": [ Vector2( 22.6296, -18.7766 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -948,10 +1023,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [  ]
+"values": [ 10.0 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -969,7 +1044,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1077,7 +1152,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 13.5235, -23.2758 ) ]
+"values": [ Vector2( 16.6278, -37.8606 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1089,7 +1164,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -30.0 ]
+"values": [ -45.0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -1107,7 +1182,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1215,7 +1290,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 8.93503, -24.1054 ) ]
+"values": [ Vector2( 13.0901, -41.1666 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1227,7 +1302,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -35.0 ]
+"values": [ -60.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -1245,7 +1320,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1353,7 +1428,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 8.4853, -28.4921 ) ]
+"values": [ Vector2( 6.06697, -42.9294 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1365,7 +1440,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -45.0 ]
+"values": [ -60.0 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -1383,7 +1458,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1491,7 +1566,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 3.81126, -31.9179 ) ]
+"values": [ Vector2( 2.31803, -45.0438 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1503,7 +1578,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -60.0 ]
+"values": [ -85.0 ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -1521,7 +1596,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1629,7 +1704,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -1.32481, -32.3914 ) ]
+"values": [ Vector2( -1.72459, -48.7587 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1659,7 +1734,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 5 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1746,57 +1821,6 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Gradient" id=15]
-
-offsets = PoolRealArray( 0, 0, 1 )
-colors = PoolColorArray( 1, 0, 0, 1, 0.992188, 1, 0, 0.784549, 1, 0.375, 0, 0.535922 )
-
-[sub_resource type="GradientTexture" id=16]
-
-flags = 4
-gradient = SubResource( 15 )
-width = 1024
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="ParticlesMaterial" id=17]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 30.0
-flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-initial_velocity_random = 0.2
-angular_velocity = 0.0
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = -100.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 45.0
-angle_random = 0.5
-scale = 1.5
-scale_random = 1.0
-color_ramp = SubResource( 16 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Flags", "Initial Velocity", "Scale", "Trail" ]
-
 [node name="cura2D" type="KinematicBody2D" index="0"]
 
 position = Vector2( 32, 0 )
@@ -1811,27 +1835,50 @@ _sections_unfolded = [ "collision" ]
 
 position = Vector2( -1, -14 )
 texture = ExtResource( 2 )
-hframes = 8
-frame = 7
+hframes = 6
+frame = 5
 region_rect = Rect2( 5, 0, 21, 41 )
 _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="aiming_arm" type="Sprite" parent="." index="1"]
+[node name="Particles_shoot" type="Particles2D" parent="." index="1"]
 
-visible = false
+position = Vector2( -1.72459, -48.7587 )
+rotation = -1.5708
+emitting = false
+amount = 16
+lifetime = 0.3
+one_shot = true
+preprocess = 0.0
+speed_scale = 2.0
+explosiveness = 0.6
+randomness = 0.0
+fixed_fps = 60
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 17 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
+
+[node name="aiming_arm" type="Sprite" parent="." index="2"]
+
 position = Vector2( -0.20922, -20.7802 )
 texture = ExtResource( 3 )
 hframes = 12
 frame = 11
 _sections_unfolded = [ "Animation", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
-position = Vector2( 4.4452, -1.25685 )
+position = Vector2( -2.7782, -7.16112 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -1850,13 +1897,13 @@ anims/aim60 = SubResource( 10 )
 anims/aim70 = SubResource( 11 )
 anims/aim80 = SubResource( 12 )
 anims/aim90 = SubResource( 13 )
-anims/idle = ExtResource( 5 )
+anims/idle = ExtResource( 4 )
 anims/run = SubResource( 14 )
 anims/walk = ExtResource( 6 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="camera" type="Camera2D" parent="." index="4"]
+[node name="camera" type="Camera2D" parent="." index="5"]
 
 anchor_mode = 1
 rotating = false
@@ -1881,29 +1928,5 @@ editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Limit", "Offset", "Smoothing" ]
-
-[node name="Particles_shoot" type="Particles2D" parent="." index="5"]
-
-position = Vector2( -1.32481, -32.3914 )
-rotation = -1.5708
-emitting = false
-amount = 16
-lifetime = 0.3
-one_shot = true
-preprocess = 0.0
-speed_scale = 3.0
-explosiveness = 0.6
-randomness = 0.0
-fixed_fps = 60
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = SubResource( 17 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
 
 
