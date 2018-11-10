@@ -1,9 +1,16 @@
 extends KinematicBody2D
 
+# node variables
+onready var camera = get_node("camera")
+onready var body = get_node("body")
+onready var aiming_arm = get_node("aiming_arm")
+onready var particles_shoot = get_node("aiming_arm/Particles_shoot")
+onready var shoot_flash = get_node("aiming_arm/ShootFlash")
+onready var animation_player = get_node("AnimationPlayer")
+
 # camera variables
 var cam_target_position = Vector2(0.0, 0.0) #Position the camera is moving to
 var cam_max_range = Vector2(46, 46) #Max distance from the character to the camera. Not used for now. Maximum recommended is about 50. Minimum 0.
-onready var camera = get_node("camera")
 
 # movement variables
 const MAX_SPEED_WALK = Vector2(100, 100) #Character maximum allowed speed when walking
@@ -16,6 +23,8 @@ var input_x = false #Player is not making any input on x axis
 var input_y = false #Player is not making any input on y axis
 
 # aiming system variables
+const AIMING_ARM_OFFSET_ORIGINAL_POSITION = 0
+const AIMING_ARM_OFFSET_WHEN_FLIP = -1
 var priest_shoulder #Point of origin from where the aiming system takes the angles. A sweet spot between shoulders and head, probably.
 var shoulder_offset = -30
 var aiming_vector = Vector2(0, 0) #Vector from the character origin to the mouse 
@@ -24,7 +33,6 @@ var angle_to_vector_x_degrees = 0
 var x_vector = Vector2(1, 0)
 var angles_array = [] #Array that contains the keys of the angles_dict variable. Represents the available angles to pick from animations.
 var aiming = false #Is character aiming?
-var aiming_arm_offset_when_flip_h = -1;
 
 #angles from 0 to 360 and animations names to use
 #The idea behind this is to compare the keys and use the proper animation.
@@ -59,7 +67,11 @@ var angles_dict = {
 }
 
 #shooting variables
-onready var particles_shoot = get_node("Particles_shoot")
+const SHOOT_COOLDOWN_IN_FRAMES = 30
+const SHOOT_FLASH_DURATION_IN_FRAMES = 6
+const LIGHT_SIZE_FACTOR = 0.5
+var shoot_cooldown = 0
+var shoot_flash_timer = 0
 var shooting = false
 
 # mouse variables
@@ -83,8 +95,10 @@ func _process(delta):
 func move_input(delta):
 	movement_checks() #Move left or right. Is character running?
 	aim_checks() #Aim in 360 degrees.
-	camera_checks()
-	shoot_checks()
+	camera_checks() #Move camera in the direction the priest is aiming.
+	shoot_checks() #Shoot!
+	
+	print(particles_shoot.emitting)
 	
 	#Max x speed
 	if (abs(char_speed.x) > max_speed.x):
@@ -105,9 +119,8 @@ func movement_checks():
 			max_speed = MAX_SPEED_WALK
 		
 	if (Input.is_action_pressed("ui_right")):
-		right = true #Looking to right
+		flip_priest(false) #Looking to right
 		input_x = true
-		get_node("Sprite").set_flip_h(false) #Looking to right 
 		
 		if(char_speed.x < 0.0):
 			char_speed.x = 0.0
@@ -115,9 +128,8 @@ func movement_checks():
 		char_speed.x += char_acceleration.x
 		
 	elif (Input.is_action_pressed("ui_left")):
-		right = false
+		flip_priest(true) #Looking to left
 		input_x = true
-		get_node("Sprite").set_flip_h(true) #Looking to left
 		
 		if(char_speed.x > 0.0):
 			char_speed.x = 0.0
@@ -137,7 +149,7 @@ func aim_checks():
 		aiming_vector = mouse_position - priest_shoulder
 		angle_to_vector_x_radians = (aiming_vector).normalized()
 		angle_to_vector_x_degrees = angle_to_vector_x_radians.angle_to(x_vector) * 180/PI #Convert radians to angles
-		angles_array = angles_dict.keys();
+		angles_array = angles_dict.keys()
 		
 		if(angle_to_vector_x_degrees < 0): #If angle to X axis is less than 0, add 360 degrees to make it positive
 			angle_to_vector_x_degrees = angle_to_vector_x_degrees + 360
@@ -145,14 +157,10 @@ func aim_checks():
 		#print(angle_to_vector_x_degrees)
 		
 		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
-			right = true #Looking to right
-			get_node("Sprite").set_flip_h(false) #Looking to right
-			get_node("aiming_arm").set_flip_h(false) #Looking to right
+			flip_priest(false) #Looking to right
 		else:
 			invert_shooting_particles()
-			right = false #Looking to left
-			get_node("Sprite").set_flip_h(true) #Looking to left
-			get_node("aiming_arm").set_flip_h(true) #Looking to right
+			flip_priest(true) #Looking to left
 		
 		for i in range(0, angles_dict.size()):
 			if(angle_to_vector_x_degrees < int(angles_array[i])):
@@ -165,12 +173,33 @@ func aim_checks():
 		aiming = false
 
 func shoot_checks():
-	if(Input.is_action_just_pressed("shoot") and not shooting and aiming):
-		shooting = true
+	print(shoot_cooldown)
+	if(Input.is_action_just_pressed("shoot") and aiming and not shooting and shoot_cooldown == 0):
+		shooting = true		
+		shoot_flash.position = particles_shoot.position
 		particles_shoot.emitting = true
+		shoot_flash.visible = true
+		shoot_flash_timer = SHOOT_FLASH_DURATION_IN_FRAMES
+		shoot_flash.texture_scale = 0.4 #Minimum value possibl for texture_scale
+		shoot_cooldown = SHOOT_COOLDOWN_IN_FRAMES
 		
 	else:
-		shooting = false
+		#print(shooting)
+		
+		if(shoot_cooldown > 0):
+			shoot_cooldown -= 1
+		
+		if(shoot_flash_timer == 0):
+			shoot_flash.visible = false
+			shooting = false
+		else:
+			if(shoot_flash_timer > 0):
+				shoot_flash_timer -= 1
+			if(shoot_flash_timer < SHOOT_FLASH_DURATION_IN_FRAMES / 2):
+				shoot_flash.texture_scale -= LIGHT_SIZE_FACTOR
+			else:
+				if(shoot_flash.texture_scale > 0):
+					shoot_flash.texture_scale += LIGHT_SIZE_FACTOR
 
 func camera_checks():
 	cam_target_position = global_position #Default position if not aiming (follow the character)
@@ -184,15 +213,27 @@ func camera_checks():
 	
 	camera.global_position = cam_target_position
 
+func flip_priest(flip):
+	if(flip):
+		right = false #Looking to left
+		body.set_flip_h(true) #Looking to left
+		aiming_arm.set_flip_h(true) #Looking to right
+		aiming_arm.position.x = AIMING_ARM_OFFSET_WHEN_FLIP
+	else:
+		right = true #Looking to right
+		aiming_arm.position.x = AIMING_ARM_OFFSET_ORIGINAL_POSITION
+		body.set_flip_h(false) #Looking to right
+		aiming_arm.set_flip_h(false) #Looking to right
+
 func invert_shooting_particles():
-	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + aiming_arm_offset_when_flip_h, particles_shoot.position.y)
+	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + AIMING_ARM_OFFSET_WHEN_FLIP, particles_shoot.position.y)
 	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
 
 func change_anim(newanim):
 	#If the animation is new,
-	if (newanim != get_node("AnimationPlayer").get_current_animation()):
+	if (newanim != animation_player.get_current_animation()):
 		#print(newanim)
-		get_node("AnimationPlayer").play(newanim) #Change it!
+		animation_player.play(newanim) #Change it!
 
 func is_character_idle():
 	return not input_x and not input_y and not Input.is_action_pressed("aim")

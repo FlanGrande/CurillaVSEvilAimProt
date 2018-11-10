@@ -10,16 +10,16 @@ source_file="res://graphics/bg/pixelart-1534694408649-5873.jpg"
 source_md5="bc49a8797c2932cb6b82e50468cf7928"
 
 dest_files=[ "res://.import/pixelart-1534694408649-5873.jpg-c69684927898ac890764be51889fde6e.stex" ]
-dest_md5="98a13ec4ea87c1e770af1fdfefe3166b"
+dest_md5="ec7e6ccd31834333eaa376d39334d1f1"
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,5 +28,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
