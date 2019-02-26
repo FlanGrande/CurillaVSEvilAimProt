@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/run.png-f403397987ee2d1fbcce33f7e2c20905.stex"
+path="res://.import/idle.png-5d8d4097b2e6483fdb1ca26170b38272.stex"
 
 [deps]
 
-source_file="res://graphics/cura/run.png"
-source_md5="4ad24c89b4f41465e1238133d166e620"
+source_file="res://characters/cura/idle.png"
+source_md5="cbe0839494af45808bae66df58e2f763"
 
-dest_files=[ "res://.import/run.png-f403397987ee2d1fbcce33f7e2c20905.stex" ]
-dest_md5="e7f724a332c38e59cf40f6388d3f7767"
+dest_files=[ "res://.import/idle.png-5d8d4097b2e6483fdb1ca26170b38272.stex" ]
+dest_md5="501143091760684e730e5596751ce0b3"
 
 [params]
 

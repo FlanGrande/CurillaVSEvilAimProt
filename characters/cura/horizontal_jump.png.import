@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pose.png-297f9b5e0e4d9259308d44590e6f40f4.stex"
+path="res://.import/horizontal_jump.png-c28fe71f69c54a62873395e3bd62106d.stex"
 
 [deps]
 
-source_file="res://graphics/cura/pose.png"
-source_md5="2e3634998fb7b6b7b3cc6746eb582535"
+source_file="res://characters/cura/horizontal_jump.png"
+source_md5="43f8b02364e339c9d59d0a43405c6d4e"
 
-dest_files=[ "res://.import/pose.png-297f9b5e0e4d9259308d44590e6f40f4.stex" ]
-dest_md5="8d1ded23fd40da3dac32de96c336f4bd"
+dest_files=[ "res://.import/horizontal_jump.png-c28fe71f69c54a62873395e3bd62106d.stex" ]
+dest_md5="15b893c064888285fc54d791b67a0123"
 
 [params]
 

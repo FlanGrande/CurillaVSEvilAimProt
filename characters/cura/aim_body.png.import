@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/aim_arm.png-cd2a4c064422c4e07135b8f85e566429.stex"
+path="res://.import/aim_body.png-b886375c0092cdae4140ba18fa9e3beb.stex"
 
 [deps]
 
-source_file="res://graphics/cura/aim_arm.png"
-source_md5="c1e664ba01d15e6947a6b7d72bae1928"
+source_file="res://characters/cura/aim_body.png"
+source_md5="7147b79626fecfa1146f88c32b7cfb6b"
 
-dest_files=[ "res://.import/aim_arm.png-cd2a4c064422c4e07135b8f85e566429.stex" ]
-dest_md5="f6135173fe4283285b9319ad789f124b"
+dest_files=[ "res://.import/aim_body.png-b886375c0092cdae4140ba18fa9e3beb.stex" ]
+dest_md5="9140f39b5a8d183829ddd6ae3322c904"
 
 [params]
 

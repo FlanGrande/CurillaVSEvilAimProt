@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/curilla.png-725e6eb9eb8a699401221a598cb43b08.stex"
+path="res://.import/pose.png-297f9b5e0e4d9259308d44590e6f40f4.stex"
 
 [deps]
 
-source_file="res://graphics/cura/curilla.png"
-source_md5="75737083a8995b785d6e20070505bffc"
+source_file="res://characters/cura/pose.png"
+source_md5="2e3634998fb7b6b7b3cc6746eb582535"
 
-dest_files=[ "res://.import/curilla.png-725e6eb9eb8a699401221a598cb43b08.stex" ]
-dest_md5="97929e1c35b9b5d7b47da1bdcce6465b"
+dest_files=[ "res://.import/pose.png-297f9b5e0e4d9259308d44590e6f40f4.stex" ]
+dest_md5="8d1ded23fd40da3dac32de96c336f4bd"
 
 [params]
 

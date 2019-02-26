@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/horizontal_jump.png-c38b8f869296871fc22a8068c45c3dbf.stex"
+path="res://.import/ss_resident-evil-6-1024x576.jpg-bcdd15722187a8e62ddcc8300002bd21.stex"
 
 [deps]
 
-source_file="res://graphics/cura/horizontal_jump.png"
-source_md5="43f8b02364e339c9d59d0a43405c6d4e"
+source_file="res://characters/cura/ss_resident-evil-6-1024x576.jpg"
+source_md5="6889571372f2c35e82f7f45c82cbe677"
 
-dest_files=[ "res://.import/horizontal_jump.png-c38b8f869296871fc22a8068c45c3dbf.stex" ]
-dest_md5="15b893c064888285fc54d791b67a0123"
+dest_files=[ "res://.import/ss_resident-evil-6-1024x576.jpg-bcdd15722187a8e62ddcc8300002bd21.stex" ]
+dest_md5="bc5fea6defd74af0b4e350973127937c"
 
 [params]
 

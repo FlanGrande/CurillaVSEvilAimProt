@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
-[ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
+[ext_resource path="res://graphics/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
 [ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 
+<<<<<<< HEAD
 [sub_resource type="ShaderMaterial" id=1]
 
 render_priority = 0
@@ -13,38 +14,33 @@ shader = ExtResource( 4 )
 shader_param/color = null
 shader_param/OCTAVES = null
 
+=======
+>>>>>>> ShootingProt
 [node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="Container" type="Node2D" parent="." index="0"]
+[node name="bg" type="Sprite" parent="." index="0"]
 
-modulate = Color( 0.15106, 0.148682, 0.453125, 1 )
-_sections_unfolded = [ "Material", "Visibility" ]
-
-[node name="bg" type="Sprite" parent="Container" index="0"]
-
+modulate = Color( 0.099451, 0.255569, 1, 1 )
 position = Vector2( 1067.54, 204.883 )
 scale = Vector2( 1.11203, 0.732136 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="cura2D" parent="Container" index="1" instance=ExtResource( 3 )]
+[node name="cura2D" parent="." index="1" instance=ExtResource( 3 )]
 
+modulate = Color( 0.0980392, 0.254902, 1, 1 )
 position = Vector2( 336, 532 )
 _sections_unfolded = [ "Transform", "Visibility", "collision" ]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
-
-environment = null
-
-[node name="shader_fog" type="Sprite" parent="WorldEnvironment" index="0"]
+[node name="shader_fog" type="Sprite" parent="." index="2"]
 
 material = SubResource( 1 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
 texture = ExtResource( 5 )
-_sections_unfolded = [ "Material", "Visibility" ]
+_sections_unfolded = [ "Material" ]
 
 

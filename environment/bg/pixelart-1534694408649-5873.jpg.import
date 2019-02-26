@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/apuntando.png-d5b876c4510be31e801a8edecd80a4d3.stex"
+path="res://.import/pixelart-1534694408649-5873.jpg-5c350301012ee44a746f8dc90de53e95.stex"
 
 [deps]
 
-source_file="res://graphics/cura/apuntando.png"
-source_md5="97ac1ed904ec8a0a85fe83b3cfabd584"
+source_file="res://environment/bg/pixelart-1534694408649-5873.jpg"
+source_md5="bc49a8797c2932cb6b82e50468cf7928"
 
-dest_files=[ "res://.import/apuntando.png-d5b876c4510be31e801a8edecd80a4d3.stex" ]
-dest_md5="bb8ac93eb27d0823478724b1e44f6c8e"
+dest_files=[ "res://.import/pixelart-1534694408649-5873.jpg-5c350301012ee44a746f8dc90de53e95.stex" ]
+dest_md5="98a13ec4ea87c1e770af1fdfefe3166b"
 
 [params]
 

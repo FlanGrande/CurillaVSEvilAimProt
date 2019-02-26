@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walk.png-338ab57de8248d93bc91f035a0c22e17.stex"
+path="res://.import/run.png-41cfa2a7145775327eccf484b50e3713.stex"
 
 [deps]
 
-source_file="res://graphics/cura/walk.png"
-source_md5="41bd1d0270315146fe9c66b32d24c5ea"
+source_file="res://characters/cura/run.png"
+source_md5="4ad24c89b4f41465e1238133d166e620"
 
-dest_files=[ "res://.import/walk.png-338ab57de8248d93bc91f035a0c22e17.stex" ]
-dest_md5="ca3c306b90606f940a3958b4ab029269"
+dest_files=[ "res://.import/run.png-41cfa2a7145775327eccf484b50e3713.stex" ]
+dest_md5="e7f724a332c38e59cf40f6388d3f7767"
 
 [params]
 

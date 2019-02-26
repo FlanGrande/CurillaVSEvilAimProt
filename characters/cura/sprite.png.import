@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ss_resident-evil-6-1024x576.jpg-fedf4253a5e0e23e0ff127f8c34c2fa4.stex"
+path="res://.import/sprite.png-665e5e02153a337639782dfef8b40472.stex"
 
 [deps]
 
-source_file="res://graphics/cura/ss_resident-evil-6-1024x576.jpg"
-source_md5="6889571372f2c35e82f7f45c82cbe677"
+source_file="res://characters/cura/sprite.png"
+source_md5="64439a51983f0b9e443e33514719014a"
 
-dest_files=[ "res://.import/ss_resident-evil-6-1024x576.jpg-fedf4253a5e0e23e0ff127f8c34c2fa4.stex" ]
-dest_md5="bc5fea6defd74af0b4e350973127937c"
+dest_files=[ "res://.import/sprite.png-665e5e02153a337639782dfef8b40472.stex" ]
+dest_md5="563b1afc04b9916a43c47687dfbb3446"
 
 [params]
 

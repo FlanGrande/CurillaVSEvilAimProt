@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tira caminando.png-60ef523885f77968328a5429d4ab10fa.stex"
+path="res://.import/apuntando.png-d5b876c4510be31e801a8edecd80a4d3.stex"
 
 [deps]
 
-source_file="res://graphics/cura/tira caminando.png"
-source_md5="b154917a14f6a395cb50cd1c785797da"
+source_file="res://characters/cura/apuntando.png"
+source_md5="97ac1ed904ec8a0a85fe83b3cfabd584"
 
-dest_files=[ "res://.import/tira caminando.png-60ef523885f77968328a5429d4ab10fa.stex" ]
-dest_md5="02be1764a9c923323cebd360b623c2a0"
+dest_files=[ "res://.import/apuntando.png-d5b876c4510be31e801a8edecd80a4d3.stex" ]
+dest_md5="bb8ac93eb27d0823478724b1e44f6c8e"
 
 [params]
 
