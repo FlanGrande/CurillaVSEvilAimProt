@@ -6,10 +6,10 @@ var cam_max_range = Vector2(46, 46) #Max distance from the character to the came
 onready var camera = get_node("camera")
 
 # movement variables
-const MAX_SPEED_WALK = Vector2(100, 100) #Character maximum allowed speed when walking
-const MAX_SPEED_RUN = Vector2(250, 100) #Character maximum allowed speed when running
+const MAX_SPEED_WALK = Vector2(3000, 1000) #Character maximum allowed speed when walking
+const MAX_SPEED_RUN = Vector2(10000, 1000) #Character maximum allowed speed when running
 var max_speed = MAX_SPEED_WALK #Current max_speed
-var char_acceleration = Vector2(8.0, 0.8) #Character acceleration
+var char_acceleration = Vector2(1000.0, 700) #Character acceleration
 var char_speed = Vector2(0.0, 0.0) #Current character speed
 var right = true #Direction character is facing
 var input_x = false #Player is not making any input on x axis
@@ -24,7 +24,7 @@ var angle_to_vector_x_degrees = 0
 var x_vector = Vector2(1, 0)
 var angles_array = [] #Array that contains the keys of the angles_dict variable. Represents the available angles to pick from animations.
 var aiming = false #Is character aiming?
-var aiming_arm_offset_when_flip_h = -1;
+var aiming_arm_offset_when_flip_h = -1
 
 #angles from 0 to 360 and animations names to use
 #The idea behind this is to compare the keys and use the proper animation.
@@ -76,12 +76,14 @@ func _process(delta):
 	move_input(delta)
 	
 	var motion = char_speed * delta
-	move_and_collide(motion)
+	print(motion)
+	move_and_slide(motion)
 	pass
 
 #Controls the input in an abstract way
 func move_input(delta):
 	movement_checks() #Move left or right. Is character running?
+	air_checks()
 	aim_checks() #Aim in 360 degrees.
 	camera_checks()
 	shoot_checks()
@@ -99,10 +101,9 @@ func movement_checks():
 	if(Input.is_action_pressed("run")):
 		change_anim("run")
 		max_speed = MAX_SPEED_RUN
-	else:
-		if (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
-			change_anim("walk") #Walk anim
-			max_speed = MAX_SPEED_WALK
+	elif (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
+		change_anim("walk") #Walk anim
+		max_speed = MAX_SPEED_WALK
 		
 	if (Input.is_action_pressed("ui_right")):
 		right = true #Looking to right
@@ -127,6 +128,12 @@ func movement_checks():
 	else:
 		input_x = false
 		char_speed.x = 0.0
+	
+	#move_and_collide(Vector2(char_speed.x, 0))
+
+func air_checks():
+	char_speed.y += char_acceleration.y
+	#move_and_collide(Vector2(0, char_speed.y))
 
 func aim_checks():
 	if(Input.is_action_pressed("aim")):
@@ -137,7 +144,7 @@ func aim_checks():
 		aiming_vector = mouse_position - priest_shoulder
 		angle_to_vector_x_radians = (aiming_vector).normalized()
 		angle_to_vector_x_degrees = angle_to_vector_x_radians.angle_to(x_vector) * 180/PI #Convert radians to angles
-		angles_array = angles_dict.keys();
+		angles_array = angles_dict.keys()
 		
 		if(angle_to_vector_x_degrees < 0): #If angle to X axis is less than 0, add 360 degrees to make it positive
 			angle_to_vector_x_degrees = angle_to_vector_x_degrees + 360
