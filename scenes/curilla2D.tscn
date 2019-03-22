@@ -1823,7 +1823,7 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[node name="cura2D" type="KinematicBody2D" index="0"]
+[node name="cura2D" type="KinematicBody2D"]
 
 position = Vector2( 32, 0 )
 input_pickable = false

@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="CurillaVSEvil"
-run/main_scene="res://scenes/sistema_apuntado_prototipo.tscn"
+run/main_scene="res://levels/test_room/test_room.tscn"
 config/icon="res://icon.png"
 
 [autoload]
