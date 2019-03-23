@@ -22,7 +22,7 @@ extents = Vector2( 16.8305, 562.607 )
 custom_solver_bias = 0.0
 extents = Vector2( 12.5638, 556.621 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=4]
 
 render_priority = 0
 shader = ExtResource( 5 )
@@ -62,6 +62,7 @@ bounce = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="0"]
 
 shape = SubResource( 1 )
+disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="1"]
 
@@ -76,7 +77,15 @@ shape = SubResource( 3 )
 
 [node name="Platform" parent="Container" index="1" instance=ExtResource( 3 )]
 
-[node name="cura2D" parent="Container" index="2" instance=ExtResource( 4 )]
+[node name="Platform2" parent="Container" index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 364.298, 540.362 )
+
+[node name="Platform3" parent="Container" index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 828.508, 539.835 )
+
+[node name="cura2D" parent="Container" index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 319.789, 480.603 )
 _sections_unfolded = [ "Transform", "Visibility", "collision" ]
@@ -87,7 +96,7 @@ environment = null
 
 [node name="shader_fog" type="Sprite" parent="WorldEnvironment" index="0"]
 
-material = SubResource( 5 )
+material = SubResource( 4 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
 texture = ExtResource( 6 )

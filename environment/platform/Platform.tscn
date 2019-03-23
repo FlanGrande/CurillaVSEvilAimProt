@@ -2,7 +2,7 @@
 
 [ext_resource path="res://environment/platform/platform.png" type="Texture" id=1]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 190.973, 32.0219 )
@@ -29,6 +29,6 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 
