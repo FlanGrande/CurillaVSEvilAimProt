@@ -2,9 +2,10 @@
 
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
 [ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
-[ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/cura/curilla2D.tscn" type="PackedScene" id=3]
 [ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

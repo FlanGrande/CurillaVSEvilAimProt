@@ -10,7 +10,7 @@ source_file="res://characters/cura/horizontal_jump.png"
 source_md5="43f8b02364e339c9d59d0a43405c6d4e"
 
 dest_files=[ "res://.import/horizontal_jump.png-c28fe71f69c54a62873395e3bd62106d.stex" ]
-dest_md5="15b893c064888285fc54d791b67a0123"
+dest_md5="533f877504e8061e153a3ec35f869427"
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

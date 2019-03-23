@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
 [ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
-[ext_resource path="res://environment/platform/platform.png" type="Texture" id=3]
-[ext_resource path="res://scenes/curilla2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://environment/platform/Platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/cura/curilla2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 
@@ -12,29 +12,24 @@
 custom_solver_bias = 0.0
 extents = Vector2( 1024.08, 31.4251 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16.8305, 562.607 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 12.5638, 556.621 )
 
-[sub_resource type="RectangleShape2D" id=5]
-
-custom_solver_bias = 0.0
-extents = Vector2( 190.973, 32.0219 )
-
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=5]
 
 render_priority = 0
 shader = ExtResource( 5 )
 shader_param/color = null
 shader_param/OCTAVES = null
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
@@ -71,37 +66,15 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="1"]
 
 position = Vector2( -1016.7, -531.802 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="2"]
 
 position = Vector2( 1035.03, -513.074 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
-[node name="Platform" type="Node2D" parent="Container" index="1"]
-
-position = Vector2( 689.561, 452.467 )
-scale = Vector2( 1, 0.3 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="Container/Platform" index="0"]
-
-texture = ExtResource( 3 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Container/Platform" index="1"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Platform/StaticBody2D" index="0"]
-
-shape = SubResource( 5 )
+[node name="Platform" parent="Container" index="1" instance=ExtResource( 3 )]
 
 [node name="cura2D" parent="Container" index="2" instance=ExtResource( 4 )]
 
@@ -114,7 +87,7 @@ environment = null
 
 [node name="shader_fog" type="Sprite" parent="WorldEnvironment" index="0"]
 
-material = SubResource( 2 )
+material = SubResource( 5 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
 texture = ExtResource( 6 )
