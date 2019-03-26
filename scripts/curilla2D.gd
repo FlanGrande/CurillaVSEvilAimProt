@@ -11,14 +11,14 @@ var cam_target_position = Vector2(0.0, 0.0) #Position the camera is moving to
 var cam_max_range = Vector2(46, 46) #Max distance from the character to the camera. Not used for now. Maximum recommended is about 50. Minimum 0.
 onready var camera = get_node("camera")
 
-# movement variables
-const MAX_SPEED_WALK = Vector2(3000, 1000) #Character maximum allowed speed when walking
-const MAX_SPEED_RUN = Vector2(18000, 1000) #Character maximum allowed speed when running
-const MAX_SPEED_JUMP = Vector2(24000, 1000) #Character maximum allowed speed when jumping
+# movement variables // Experiment with values, A LOT
+const MAX_SPEED_WALK = Vector2(3000, 12000) #Character maximum allowed speed when walking
+const MAX_SPEED_RUN = Vector2(12000, 12000) #Character maximum allowed speed when running
+const MAX_SPEED_JUMP = Vector2(12000, 12000) #Character maximum allowed speed when jumping
 var max_speed = MAX_SPEED_WALK #Current max_speed
 var char_acceleration = Vector2(400, 700) #Character acceleration
-var char_jump_acceleration = Vector2(200, 400) #Character acceleration
-var jump_speed = Vector2(18000, 8000)
+var char_jump_acceleration = Vector2(200, 700) #Character acceleration
+var jump_speed = Vector2(14000, 12000)
 var char_speed = Vector2(0.0, 0.0) #Current character speed
 var right = true #Direction character is facing
 var input_x = false #Player is not making any input on x axis
@@ -106,7 +106,11 @@ func move_input(delta):
 	#Max x speed
 	if (abs(char_speed.x) > max_speed.x):
 		char_speed.x = sign(char_speed.x) * max_speed.x
-		
+	
+	#Max y speed
+	if (abs(char_speed.y) > max_speed.y):
+		char_speed.y = sign(char_speed.y) * max_speed.y
+	
 	#If doing nothing, then change animation to idle
 	if (is_character_idle()):
 		change_anim("idle")
@@ -119,8 +123,9 @@ func movement_checks():
 			if(Input.is_action_pressed("run")):
 				if (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
 					change_anim("horizontal_jump")
-					#char_speed.x = sign(char_speed.x) * jump_speed.x
+					char_speed.x = 2 * char_speed.x
 					max_speed = MAX_SPEED_JUMP
+					#char_speed.x = sign(char_speed.x) * char_speed.x
 					char_speed.y = -1 * jump_speed.y
 					jumping = true
 					jump_timer.start();
@@ -164,8 +169,11 @@ func movement_checks():
 func air_checks():
 	char_speed.y += char_acceleration.y
 	
-	if(jumping):
-		char_speed.x += sign(char_speed.x) * char_jump_acceleration.x
+	#if(jumping):
+		#char_speed.x = sign(char_speed.x) * (abs(char_speed.x) * abs(char_speed.x))
+	
+	if(test_move(get_transform(), Vector2(1, 0)) or test_move(get_transform(), Vector2(-1, 0)) and char_speed.y > 0):
+		char_speed.x = 0
 	
 	if(test_move(get_transform(), Vector2(0, 1))):
 		char_speed.y = 0
