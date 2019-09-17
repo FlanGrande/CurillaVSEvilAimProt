@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/walk.png-8204cf088cc0a6221bb6d3c56408fbb3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://characters/cura/walk.png"
-source_md5="41bd1d0270315146fe9c66b32d24c5ea"
-
 dest_files=[ "res://.import/walk.png-8204cf088cc0a6221bb6d3c56408fbb3.stex" ]
-dest_md5="ca3c306b90606f940a3958b4ab029269"
 
 [params]
 
 compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

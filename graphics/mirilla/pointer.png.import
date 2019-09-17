@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/pointer.png-bbd716fdb1f85cabeff018d8a1fe670c.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://graphics/mirilla/pointer.png"
-source_md5="852ec6f0cd827c58ac6c6d6494676430"
-
 dest_files=[ "res://.import/pointer.png-bbd716fdb1f85cabeff018d8a1fe670c.stex" ]
-dest_md5="f44c23a44f40d05c0dcd552872893363"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

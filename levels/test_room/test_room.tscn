@@ -8,160 +8,108 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
 extents = Vector2( 1024.08, 31.4251 )
 
 [sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
 extents = Vector2( 16.8305, 562.607 )
 
 [sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
 extents = Vector2( 12.5638, 556.621 )
 
 [sub_resource type="ShaderMaterial" id=4]
-
-render_priority = 0
 shader = ExtResource( 5 )
-shader_param/color = null
-shader_param/OCTAVES = null
+shader_param/color = Vector3( 0.3, 0.45, 0.6 )
+shader_param/OCTAVES = 4
 
-[node name="Node2D" type="Node2D" index="0"]
-
+[node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="Container" type="Node2D" parent="." index="0"]
-
+[node name="Container" type="Node2D" parent="."]
 modulate = Color( 0.15106, 0.148682, 0.453125, 1 )
-_sections_unfolded = [ "Material", "Visibility" ]
 
-[node name="background" type="Node2D" parent="Container" index="0"]
+[node name="background" type="Node2D" parent="Container"]
 
-[node name="bg" type="Sprite" parent="Container/background" index="0"]
-
+[node name="bg" type="Sprite" parent="Container/background"]
 position = Vector2( 1067.54, 204.883 )
 scale = Vector2( 1.11203, 0.732136 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Visibility" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Container/background/bg" index="0"]
-
+[node name="StaticBody2D" type="StaticBody2D" parent="Container/background/bg"]
 position = Vector2( -0.719761, 508.552 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="0"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D"]
 shape = SubResource( 1 )
 disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="1"]
-
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D"]
 position = Vector2( -1016.7, -531.802 )
 shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D" index="2"]
-
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Container/background/bg/StaticBody2D"]
 position = Vector2( 1035.03, -513.074 )
 shape = SubResource( 3 )
 
-[node name="Platform" parent="Container" index="1" instance=ExtResource( 3 )]
-
+[node name="Platform" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 859.035, 400.362 )
 
-[node name="Platform2" parent="Container" index="2" instance=ExtResource( 3 )]
-
+[node name="Platform2" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 364.298, 540.362 )
 
-[node name="Platform3" parent="Container" index="3" instance=ExtResource( 3 )]
-
+[node name="Platform3" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 849.079, 536.407 )
 
-[node name="Platform4" parent="Container" index="4" instance=ExtResource( 3 )]
-
+[node name="Platform4" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 1338.19, 523.348 )
 
-[node name="Platform5" parent="Container" index="5" instance=ExtResource( 3 )]
-
+[node name="Platform5" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 2134.39, 529.088 )
 
-[node name="Platform6" parent="Container" index="6" instance=ExtResource( 3 )]
-
+[node name="Platform6" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 2171.62, 428.134 )
 
-[node name="Platform7" parent="Container" index="7" instance=ExtResource( 3 )]
-
+[node name="Platform7" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 2210.28, 329.328 )
 
-[node name="Platform9" parent="Container" index="8" instance=ExtResource( 3 )]
-
+[node name="Platform9" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 1750.62, 257.013 )
 
-[node name="Platform10" parent="Container" index="9" instance=ExtResource( 3 )]
-
+[node name="Platform10" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 1369, 257.729 )
 
-[node name="Platform11" parent="Container" index="10" instance=ExtResource( 3 )]
-
+[node name="Platform11" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -24.3092, 509.756 )
 
-[node name="Platform12" parent="Container" index="11" instance=ExtResource( 3 )]
-
+[node name="Platform12" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -46.5048, 487.561 )
 
-[node name="Platform13" parent="Container" index="12" instance=ExtResource( 3 )]
-
+[node name="Platform13" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -70.8483, 463.933 )
 
-[node name="Platform14" parent="Container" index="13" instance=ExtResource( 3 )]
-
+[node name="Platform14" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -105.216, 439.59 )
 
-[node name="Platform15" parent="Container" index="14" instance=ExtResource( 3 )]
-
+[node name="Platform15" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -128.843, 416.678 )
 
-[node name="Platform16" parent="Container" index="15" instance=ExtResource( 3 )]
-
+[node name="Platform16" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -152.471, 393.05 )
 
-[node name="Platform17" parent="Container" index="16" instance=ExtResource( 3 )]
-
+[node name="Platform17" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( -170.37, 370.855 )
 
-[node name="Platform18" parent="Container" index="17" instance=ExtResource( 3 )]
-
+[node name="Platform18" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 292.157, 316.44 )
 
-[node name="Platform19" parent="Container" index="18" instance=ExtResource( 3 )]
-
+[node name="Platform19" parent="Container" instance=ExtResource( 3 )]
 position = Vector2( 728.908, 278.493 )
 
-[node name="cura2D" parent="Container" index="19" instance=ExtResource( 4 )]
-
+[node name="cura2D" parent="Container" instance=ExtResource( 4 )]
 position = Vector2( 319.789, 480.603 )
-_sections_unfolded = [ "Transform", "Visibility", "collision" ]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
-environment = null
-
-[node name="shader_fog" type="Sprite" parent="WorldEnvironment" index="0"]
-
+[node name="shader_fog" type="Sprite" parent="WorldEnvironment"]
 material = SubResource( 4 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Material", "Visibility" ]
-
-

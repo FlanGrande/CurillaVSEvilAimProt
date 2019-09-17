@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/zombie.png-76e07a6300f78e238c6910f4efa2e186.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://graphics/zombie/zombie.png"
-source_md5="5910b8bc0a9bf46f14b44dffd34d2931"
-
 dest_files=[ "res://.import/zombie.png-76e07a6300f78e238c6910f4efa2e186.stex" ]
-dest_md5="235338ca1a633b8dd9688e401e30eac9"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

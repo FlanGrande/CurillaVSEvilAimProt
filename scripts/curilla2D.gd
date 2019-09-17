@@ -129,6 +129,12 @@ func movement_checks():
 					char_speed.y = -1 * jump_speed.y
 					jumping = true
 					jump_timer.start();
+			else:
+				#change_anim("horizontal_jump")
+				max_speed = Vector2(0,  MAX_SPEED_JUMP.y)
+				char_speed.y = -1 * jump_speed.y
+				jumping = true
+				jump_timer.start();
 		else:
 			#Check if player is running
 			if(Input.is_action_pressed("run")):

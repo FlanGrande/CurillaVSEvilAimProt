@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/curilla.png-7c48c1c85f33fb35f08ab0c8a47d0e3a.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://characters/cura/curilla.png"
-source_md5="75737083a8995b785d6e20070505bffc"
-
 dest_files=[ "res://.import/curilla.png-7c48c1c85f33fb35f08ab0c8a47d0e3a.stex" ]
-dest_md5="97929e1c35b9b5d7b47da1bdcce6465b"
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true

@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/aim_body.png-b886375c0092cdae4140ba18fa9e3beb.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://characters/cura/aim_body.png"
-source_md5="7147b79626fecfa1146f88c32b7cfb6b"
-
 dest_files=[ "res://.import/aim_body.png-b886375c0092cdae4140ba18fa9e3beb.stex" ]
-dest_md5="9140f39b5a8d183829ddd6ae3322c904"
 
 [params]
 
 compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false

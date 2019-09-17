@@ -3,20 +3,21 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/run.png-41cfa2a7145775327eccf484b50e3713.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://characters/cura/run.png"
-source_md5="4ad24c89b4f41465e1238133d166e620"
-
 dest_files=[ "res://.import/run.png-41cfa2a7145775327eccf484b50e3713.stex" ]
-dest_md5="e7f724a332c38e59cf40f6388d3f7767"
 
 [params]
 
 compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
+compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=false
@@ -26,6 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
+process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=false
