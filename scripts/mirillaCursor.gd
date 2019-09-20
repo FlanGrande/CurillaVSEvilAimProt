@@ -17,7 +17,7 @@ func _ready():
 
 func _process(delta):
 	mouse_position = get_viewport().get_mouse_position()
-	position = Vector2(mouse_position)
+	position = Vector2(mouse_position.x, mouse_position.y)
 	
 	if(position.distance_to(cura.position) >= aim_range):
 		position = cura.position

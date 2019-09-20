@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/curilla2D.gd" type="Script" id=1]
 [ext_resource path="res://characters/cura/horizontal_jump.png" type="Texture" id=2]
@@ -10,66 +10,34 @@
 [ext_resource path="res://animation/walk.tres" type="Animation" id=8]
 
 [sub_resource type="Gradient" id=1]
-
 offsets = PoolRealArray( 0, 0, 1 )
 colors = PoolColorArray( 1, 0, 0, 1, 0.992188, 1, 0, 0.784549, 1, 0.375, 0, 0.535922 )
 
 [sub_resource type="GradientTexture" id=2]
-
-flags = 4
 gradient = SubResource( 1 )
 width = 1024
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ParticlesMaterial" id=3]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 0
-flag_align_y = false
-flag_rotate_y = false
 flag_disable_z = true
 spread = 30.0
-flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 20.0
 initial_velocity_random = 0.2
-angular_velocity = 0.0
-angular_velocity_random = 0.0
+angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = -100.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
 angle = 45.0
 angle_random = 0.5
 scale = 1.5
 scale_random = 1.0
 color_ramp = SubResource( 2 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Color", "Flags", "Initial Velocity", "Scale", "Trail" ]
 
 [sub_resource type="RectangleShape2D" id=4]
-
-custom_solver_bias = 0.0
 extents = Vector2( 4.66135, 31.9878 )
 
 [sub_resource type="Animation" id=5]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -204,10 +172,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -342,10 +307,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -480,10 +442,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -618,10 +577,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=9]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -756,10 +712,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=10]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -894,10 +847,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=11]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1032,10 +982,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=12]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1170,10 +1117,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=13]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1308,10 +1252,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=14]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1446,10 +1387,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=15]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1584,10 +1522,7 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=16]
-
 length = 0.01
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -1722,22 +1657,19 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id=17]
-
 resource_name = "falling"
-length = 1.0
-loop = false
-step = 0.1
+length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 5 ]
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1801,10 +1733,8 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id=18]
-
 resource_name = "horizontal_jump"
 length = 1.2
-loop = false
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -1892,9 +1822,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=19]
-
 length = 1.2
-loop = false
 step = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -1993,71 +1921,45 @@ tracks/7/keys = {
 "values": [ false ]
 }
 
-[node name="cura2D" type="KinematicBody2D" index="0"]
+[sub_resource type="RectangleShape2D" id=20]
 
+[node name="cura2D" type="KinematicBody2D"]
 position = Vector2( 32, 0 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "collision" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2.42255, -13.8746 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -9 )
 hframes = 6
-frame = 5
 region_rect = Rect2( 5, 0, 21, 41 )
-_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform", "Visibility", "Z Index" ]
 
-[node name="Particles_shoot" type="Particles2D" parent="." index="1"]
-
+[node name="Particles_shoot" type="Particles2D" parent="."]
 position = Vector2( 21.3816, -32.2915 )
 rotation = -0.698132
 emitting = false
 amount = 16
 lifetime = 0.3
 one_shot = true
-preprocess = 0.0
 speed_scale = 2.0
 explosiveness = 0.6
-randomness = 0.0
 fixed_fps = 60
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
 process_material = SubResource( 3 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
 
-[node name="aiming_arm" type="Sprite" parent="." index="2"]
-
+[node name="aiming_arm" type="Sprite" parent="."]
 visible = false
 position = Vector2( -0.20922, -20.7802 )
 texture = ExtResource( 3 )
 hframes = 12
 frame = 6
-_sections_unfolded = [ "Animation", "Visibility" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"cura",
+]]
 position = Vector2( -2.7782, -9 )
 shape = SubResource( 4 )
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
-
-root_node = NodePath("..")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.3
 anims/aim0 = SubResource( 5 )
 anims/aim270 = SubResource( 6 )
@@ -2076,40 +1978,26 @@ anims/horizontal_jump = SubResource( 18 )
 anims/idle = ExtResource( 6 )
 anims/run = SubResource( 19 )
 anims/walk = ExtResource( 8 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="camera" type="Camera2D" parent="." index="5"]
-
-anchor_mode = 1
-rotating = false
+[node name="camera" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1, 1 )
 limit_left = 0
 limit_top = -190
 limit_right = 2130
 limit_bottom = 600
-limit_smoothed = false
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
 smoothing_speed = 20.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
 editor_draw_limits = true
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Limit", "Offset", "Smoothing" ]
 
-[node name="jump_timer" type="Timer" parent="." index="6"]
-
-process_mode = 1
+[node name="jump_timer" type="Timer" parent="."]
 wait_time = 1.1
 one_shot = true
-autostart = false
 
+[node name="Area2D" type="Area2D" parent="."]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -3.00314, -51.053 )
+shape = SubResource( 20 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

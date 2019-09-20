@@ -11,19 +11,30 @@ var cam_target_position = Vector2(0.0, 0.0) #Position the camera is moving to
 var cam_max_range = Vector2(46, 46) #Max distance from the character to the camera. Not used for now. Maximum recommended is about 50. Minimum 0.
 onready var camera = get_node("camera")
 
+# animation_variables
+const MAX_ANIMATION_PLAYBACK_SPEED = 1.3
+const MIN_ANIMATION_PLAYBACK_SPEED = 0.7
+var playback_speed_increment = 1.01
+var playback_animation_speed = 1.3
+
 # movement variables // Experiment with values, A LOT
-const MAX_SPEED_WALK = Vector2(3000, 12000) #Character maximum allowed speed when walking
-const MAX_SPEED_RUN = Vector2(12000, 12000) #Character maximum allowed speed when running
-const MAX_SPEED_JUMP = Vector2(12000, 12000) #Character maximum allowed speed when jumping
+const MAX_SPEED_WALK = Vector2(60, 12000) #Character maximum allowed speed when walking
+const MAX_SPEED_RUN = Vector2(200, 12000) #Character maximum allowed speed when running
+const MAX_SPEED_HORIZONTAL_JUMP = Vector2(300, 600) #Character maximum allowed speed when jumping
+const MAX_SPEED_VERTICAL_JUMP = Vector2(0, 1000) #Character maximum allowed speed when jumping
 var max_speed = MAX_SPEED_WALK #Current max_speed
-var char_acceleration = Vector2(400, 700) #Character acceleration
-var char_jump_acceleration = Vector2(200, 700) #Character acceleration
-var jump_speed = Vector2(14000, 12000)
+var target_speed = 0 #speed will change speed gradually towards this value
+var char_acceleration = Vector2(3.5, 12) #Character x movement and gravity
+var char_deceleration = Vector2(1, 12) #Character x movement and gravity
+#var char_jump_acceleration = Vector2(200, 700) #Character acceleration
+var horizontal_jump_speed = Vector2(50, 250)
+var vertical_jump_speed = 300
 var char_speed = Vector2(0.0, 0.0) #Current character speed
 var right = true #Direction character is facing
 var input_x = false #Player is not making any input on x axis
 var input_y = false #Player is not making any input on y axis
 var jumping = false
+var climbing = false
 var falling = true
 
 # aiming system variables
@@ -86,8 +97,8 @@ func _process(delta):
 	elapsed_time += delta
 	move_input(delta)
 	
-	var motion = char_speed * delta
-	print(motion)
+	var motion = char_speed
+	#print(motion)
 	move_and_slide(motion, Vector2(0, -1))
 	
 	if(position.y > window.size.y):
@@ -105,11 +116,30 @@ func move_input(delta):
 	
 	#Max x speed
 	if (abs(char_speed.x) > max_speed.x):
-		char_speed.x = sign(char_speed.x) * max_speed.x
+		change_char_x_speed(sign(char_speed.x) * max_speed.x)
 	
 	#Max y speed
 	if (abs(char_speed.y) > max_speed.y):
 		char_speed.y = sign(char_speed.y) * max_speed.y
+	
+	#Change animation to walk if too slow
+	if(not jumping and not falling and not aiming):
+		if abs(char_speed.x) <  MAX_SPEED_RUN.x * 0.6:
+				change_anim("walk")
+		else:
+			if(not jumping and not falling and not aiming):
+				change_anim("run")
+	
+	#Max playback_animation_speed
+	if playback_animation_speed > MAX_ANIMATION_PLAYBACK_SPEED:
+		change_anim_speed(MAX_ANIMATION_PLAYBACK_SPEED)
+	
+	if playback_animation_speed < MIN_ANIMATION_PLAYBACK_SPEED:
+		change_anim_speed(MIN_ANIMATION_PLAYBACK_SPEED)
+	
+	#Update falling status
+	if char_speed.y > 0:
+		falling = true
 	
 	#If doing nothing, then change animation to idle
 	if (is_character_idle()):
@@ -123,27 +153,34 @@ func movement_checks():
 			if(Input.is_action_pressed("run")):
 				if (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
 					change_anim("horizontal_jump")
-					char_speed.x = 2 * char_speed.x
-					max_speed = MAX_SPEED_JUMP
+					char_speed.x = char_speed.x * 1.3
+					change_anim_speed(1.6)
+					max_speed = MAX_SPEED_HORIZONTAL_JUMP
 					#char_speed.x = sign(char_speed.x) * char_speed.x
-					char_speed.y = -1 * jump_speed.y
+					char_speed.y = -1 * horizontal_jump_speed.y
 					jumping = true
 					jump_timer.start();
 			else:
 				#change_anim("horizontal_jump")
-				max_speed = Vector2(0,  MAX_SPEED_JUMP.y)
-				char_speed.y = -1 * jump_speed.y
+				max_speed = Vector2(0,  MAX_SPEED_VERTICAL_JUMP.y)
+				char_speed.y = -1 * vertical_jump_speed
 				jumping = true
 				jump_timer.start();
 		else:
 			#Check if player is running
 			if(Input.is_action_pressed("run")):
-				change_anim("run")
+				#change_anim_speed(MIN_ANIMATION_PLAYBACK_SPEED)
+				playback_animation_speed = playback_animation_speed * playback_speed_increment
+				change_anim_speed(playback_animation_speed)
+				print_debug(playback_animation_speed)
 				max_speed = MAX_SPEED_RUN
+				get_node("AnimationPlayer").get_current_animation()
 				
 			elif (Input.is_action_pressed("ui_right") or (Input.is_action_pressed("ui_left"))):
-				change_anim("walk") #Walk anim
+				#change_anim("walk") #Walk anim
 				max_speed = MAX_SPEED_WALK
+			else:
+				change_char_x_speed(char_speed.x - char_deceleration.x)
 				
 			if (Input.is_action_pressed("ui_right")):
 				right = true #Looking to right
@@ -151,9 +188,10 @@ func movement_checks():
 				get_node("Sprite").set_flip_h(false) #Looking to right 
 				
 				if(char_speed.x < 0.0):
-					char_speed.x = 0.0
+					change_char_x_speed(12)
 				
-				char_speed.x += char_acceleration.x
+				if not aiming:
+					change_char_x_speed(char_speed.x + char_acceleration.x)
 				
 			elif (Input.is_action_pressed("ui_left")):
 				right = false
@@ -161,16 +199,29 @@ func movement_checks():
 				get_node("Sprite").set_flip_h(true) #Looking to left
 				
 				if(char_speed.x > 0.0):
-					char_speed.x = 0.0
+					change_char_x_speed(-12)
 				
-				char_speed.x -= char_acceleration.x
+				if not aiming:
+					change_char_x_speed(char_speed.x - char_deceleration.x)
 				
 			else:
 				input_x = false
-				char_speed.x = 0.0
+			
+			if jumping:
+				max_speed = MAX_SPEED_HORIZONTAL_JUMP
 	else:
 		if(jump_timer.time_left < 0.1):
 			jump_timer.stop()
+	
+	if falling or not input_x:
+		if right:
+			char_speed.x -= char_acceleration.x
+			if(char_speed.x < 0): char_speed.x = 0
+		else:
+			char_speed.x += char_acceleration.x
+			if(char_speed.x > 0): char_speed.x = 0
+		
+		playback_animation_speed /= playback_speed_increment
 
 func air_checks():
 	char_speed.y += char_acceleration.y
@@ -179,21 +230,21 @@ func air_checks():
 		#char_speed.x = sign(char_speed.x) * (abs(char_speed.x) * abs(char_speed.x))
 	
 	if(test_move(get_transform(), Vector2(1, 0)) or test_move(get_transform(), Vector2(-1, 0)) and char_speed.y > 0):
-		char_speed.x = 0
+		change_char_x_speed(0)
 	
 	if(test_move(get_transform(), Vector2(0, 1))):
 		char_speed.y = 0
 		jumping = false
 		falling = false
 	else:
-		if(not jumping):
+		if(not jumping): #walking off a ledge, for example
 			change_anim("falling")
 			falling = true
 
 func aim_checks():
 	if(Input.is_action_pressed("aim")):
 		aiming = true
-		max_speed = Vector2(0, 100)	#Stop the priest
+		change_char_x_speed(0) #Stop the priest
 		mouse_position = get_global_mouse_position()
 		priest_shoulder = Vector2(global_position.x, global_position.y + shoulder_offset)
 		aiming_vector = mouse_position - priest_shoulder
@@ -250,14 +301,40 @@ func invert_shooting_particles():
 	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + aiming_arm_offset_when_flip_h, particles_shoot.position.y)
 	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
 
+func change_char_x_speed(newspeed):
+	#TO DO: this function needs to set a new speed and gradually change to that value.
+	target_speed = newspeed
+	
+	if char_speed.x < target_speed:
+		char_speed.x += char_acceleration.x
+	elif char_speed.x > target_speed:
+		char_speed.x -= char_acceleration.x
+	
+	pass
+
 func change_anim(newanim):
 	#If the animation is new,
 	if (newanim != get_node("AnimationPlayer").get_current_animation()):
 		#print(newanim)
 		get_node("AnimationPlayer").play(newanim) #Change it!
+		
+func change_anim_speed(newanimspeed):
+	playback_animation_speed = newanimspeed
+	get_node("AnimationPlayer").playback_speed = newanimspeed #Change it!
 
 func is_character_idle():
-	return not input_x and not input_y and not Input.is_action_pressed("aim") and not falling
+	return not input_x and not input_y and not Input.is_action_pressed("aim") and not falling and char_speed.x == 0
 
 func respawn():
 	position = spawn
+
+func _on_Area2D_body_entered(body):
+	#print(body.is_in_group("areaTrepar"))
+	if body.is_in_group("areaTrepar"):
+		if jumping:
+			#position.y = position.y - 100
+			#char_speed.y = 
+			climbing = true
+			$CollisionShape2D.call_deferred("set_disabled", true)
+			print("hola")
+	pass # Replace with function body.
