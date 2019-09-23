@@ -104,13 +104,13 @@ position = Vector2( -152.471, 393.05 )
 position = Vector2( -170.37, 370.855 )
 
 [node name="Platform18" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 292.157, 316.44 )
+position = Vector2( 70.8571, 290.552 )
 
 [node name="Platform19" parent="Container" instance=ExtResource( 4 )]
 position = Vector2( 728.908, 278.493 )
 
 [node name="cura2D" parent="Container" instance=ExtResource( 5 )]
-position = Vector2( 319.789, 480.603 )
+position = Vector2( 351.523, 496.47 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
