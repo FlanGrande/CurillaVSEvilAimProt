@@ -337,13 +337,11 @@ func look_to_the_right(enabled):
 func respawn():
 	position = spawn
 
-func _on_Area2D_body_entered(body):
-	#print(body.is_in_group("areaTrepar"))
+func _on_ClimbCollider_body_entered(body):
 	if body.is_in_group("areaTrepar"):
+		print("areaTrepar body entered")
 		if jumping:
-			#position.y = position.y - 100
-			#char_speed.y = 
+			position.y = body.global_position.y - get_node("CollisionShape2D").shape.extents.y
+			char_speed.y = 0
 			climbing = true
-			$CollisionShape2D.call_deferred("set_disabled", true)
-			print("hola")
 	pass # Replace with function body.

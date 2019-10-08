@@ -1,12 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
 [ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
-[ext_resource path="res://scenes/areaTrepar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://environment/platform/Platform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://characters/cura/curilla2D.tscn" type="PackedScene" id=5]
-[ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://environment/platform/Platform.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/cura/curilla2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1024.08, 31.4251 )
@@ -20,7 +19,7 @@ extents = Vector2( 12.5638, 556.621 )
 [sub_resource type="Environment" id=4]
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 6 )
+shader = ExtResource( 5 )
 shader_param/color = Vector3( 0.3, 0.45, 0.6 )
 shader_param/OCTAVES = 4
 
@@ -52,65 +51,62 @@ shape = SubResource( 2 )
 position = Vector2( 1035.03, -513.074 )
 shape = SubResource( 3 )
 
-[node name="Node2D" parent="Container" instance=ExtResource( 3 )]
-position = Vector2( 1149.63, 410.82 )
+[node name="Platforms" type="Node2D" parent="Container"]
 
-[node name="Platform" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 971.503, 410.586 )
+[node name="Platform" parent="Container/Platforms" instance=ExtResource( 3 )]
+editor/display_folded = true
+position = Vector2( 969.469, 402.058 )
 
-[node name="Platform2" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform2" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 364.298, 540.362 )
 
-[node name="Platform3" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform3" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 849.079, 536.407 )
 
-[node name="Platform4" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform4" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 1338.19, 523.348 )
 
-[node name="Platform5" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 2134.39, 529.088 )
+[node name="Platform5" parent="Container/Platforms" instance=ExtResource( 3 )]
+position = Vector2( 1859.71, 467.854 )
 
-[node name="Platform6" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 2171.62, 428.134 )
+[node name="Platform6" parent="Container/Platforms" instance=ExtResource( 3 )]
+position = Vector2( 2182.15, 352.804 )
 
-[node name="Platform7" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 2210.28, 329.328 )
-
-[node name="Platform9" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform9" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 1750.62, 257.013 )
 
-[node name="Platform10" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform10" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 1369, 257.729 )
 
-[node name="Platform11" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform11" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -24.3092, 509.756 )
 
-[node name="Platform12" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform12" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -46.5048, 487.561 )
 
-[node name="Platform13" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform13" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -70.8483, 463.933 )
 
-[node name="Platform14" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform14" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -105.216, 439.59 )
 
-[node name="Platform15" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform15" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -128.843, 416.678 )
 
-[node name="Platform16" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform16" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -152.471, 393.05 )
 
-[node name="Platform17" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform17" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( -170.37, 370.855 )
 
-[node name="Platform18" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform18" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 70.8571, 290.552 )
 
-[node name="Platform19" parent="Container" instance=ExtResource( 4 )]
+[node name="Platform19" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 728.908, 278.493 )
 
-[node name="cura2D" parent="Container" instance=ExtResource( 5 )]
-position = Vector2( 351.523, 496.47 )
+[node name="cura2D" parent="Container" instance=ExtResource( 4 )]
+position = Vector2( 1198.62, 483.174 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
@@ -119,4 +115,4 @@ environment = SubResource( 4 )
 material = SubResource( 5 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
