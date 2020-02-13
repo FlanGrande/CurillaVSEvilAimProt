@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
 [ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
 [ext_resource path="res://environment/platform/Platform.tscn" type="PackedScene" id=3]
-[ext_resource path="res://characters/cura/curilla2D.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/cura/curilla2D_FSM.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 
@@ -105,8 +105,8 @@ position = Vector2( 70.8571, 290.552 )
 [node name="Platform19" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 728.908, 278.493 )
 
-[node name="cura2D" parent="Container" instance=ExtResource( 4 )]
-position = Vector2( 1198.62, 483.174 )
+[node name="cura2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1368.27, 474.203 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
