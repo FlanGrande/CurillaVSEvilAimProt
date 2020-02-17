@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://debug/Debug_Label.gd" type="Script" id=1]
 
 [node name="Container2" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 1 )
 
 [node name="lblState" type="Label" parent="."]
 margin_left = 16.0
@@ -52,5 +55,43 @@ margin_top = 44.0
 margin_right = 208.0
 margin_bottom = 58.0
 text = "[GROUND]"
+align = 2
+valign = 1
+
+[node name="lblMousePos" type="Label" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 58.0
+margin_right = 67.0
+margin_bottom = 72.0
+text = "Mouse"
+valign = 1
+
+[node name="txtMousePos" type="Label" parent="."]
+visible = false
+margin_left = 96.0
+margin_top = 58.0
+margin_right = 208.0
+margin_bottom = 72.0
+text = "[MOUSE]"
+align = 2
+valign = 1
+
+[node name="lblCastPos" type="Label" parent="."]
+visible = false
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 67.0
+margin_bottom = 86.0
+text = "Cast:"
+valign = 1
+
+[node name="txtCastPos" type="Label" parent="."]
+visible = false
+margin_left = 96.0
+margin_top = 72.0
+margin_right = 208.0
+margin_bottom = 86.0
+text = "[CAST]"
 align = 2
 valign = 1

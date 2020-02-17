@@ -1,10 +1,8 @@
 extends KinematicBody2D
 
-# Weird constantly falling bug, makes is_on_floor behave weirdly
+# Find a better solution for sliding
 
 signal priest_shoot
-
-onready var jump_timer = get_node("jump_timer")
 
 # States
 enum State {
@@ -132,6 +130,11 @@ func _process(delta):
 	
 	pass
 
+func _draw():
+	#if current_state == State.SHOOTING:
+	#	$RayCast2DShoot.draw_line($RayCast2DShoot.position, $RayCast2DShoot.cast_to * 10, Color(255, 255, 255), 2.0, true)
+	pass
+
 func handle_input():
 	match current_state:
 		State.IDLE:
@@ -183,7 +186,11 @@ func handle_input():
 		
 		State.AIMING:
 			if(Input.is_action_just_pressed("shoot")): #Up was pressed
+				change_state(State.SHOOTING)
 				emit_signal("priest_shoot")
+			
+			if(not Input.is_action_pressed("aim")):
+				change_state(State.IDLE)
 		
 		State.SHOOTING:
 			#shoot()
@@ -258,11 +265,9 @@ func update():
 		
 		State.AIMING:
 			aim_checks()
-			
-			if(not Input.is_action_pressed("aim")):
-				change_state(State.IDLE)
 		
 		State.SHOOTING:
+			aim_checks()
 			#change_anim("aim0")
 			pass
 		
@@ -341,12 +346,15 @@ func run():
 	max_speed.x = MAX_SPEED_RUN
 	#get_node("AnimationPlayer").get_current_animation()
 
+func shoot():
+	particles_shoot.emitting = true
+	$ShootTimer.start()
+
 func vertical_jump():
 	#If not running, do vertical jump. This is a Prince of Persia style jump that initiates climbing.
 	#change_anim("horizontal_jump")
 	max_speed = Vector2(0,  MAX_SPEED_VERTICAL_JUMP.y)
 	char_speed.y = -1 * vertical_jump_speed
-	jump_timer.start()
 	char_speed.x = 0
 
 func horizontal_jump():
@@ -358,16 +366,12 @@ func horizontal_jump():
 	max_speed = MAX_SPEED_HORIZONTAL_JUMP
 	#char_speed.x = sign(char_speed.x) * char_speed.x
 	char_speed.y = -1 * horizontal_jump_speed.y
-	jump_timer.start()
-
-func shoot():
-	particles_shoot.emitting = true
 
 #Climb up a ledge.
 func climb():
 	if climbable_body:
 		position.x = climbable_body.global_position.x
-		position.y = climbable_body.global_position.y - get_node("CollisionShape2D").shape.extents.y
+		position.y = climbable_body.global_position.y - $CollisionShape2D.shape.height
 		char_speed.y = 0
 		change_state(State.IDLE)
 
@@ -385,13 +389,12 @@ func air_checks():
 	else:
 		char_speed.y += char_acceleration.y
 		
-		if char_speed.y > char_acceleration.y * 6 and current_state != State.GRABBING: # 6 is totally arbitrary, it should remain a low value.
+		if char_speed.y > char_acceleration.y * 6 and current_state != State.GRABBING: # 6 is somewhat arbitrary, it should remain a low value.
 			change_state(State.FALLING)
 
 func aim_checks():
-	change_state(State.AIMING)
 	change_char_x_speed(0) #Stop the priest
-	mouse_position = get_global_mouse_position()
+	if current_state != State.SHOOTING: mouse_position = get_global_mouse_position() # Don't update mouse position during a gunshot
 	priest_shoulder = Vector2(global_position.x, global_position.y + shoulder_offset)
 	aiming_vector = mouse_position - priest_shoulder
 	angle_to_vector_x_radians = (aiming_vector).normalized()
@@ -427,6 +430,8 @@ func camera_checks():
 func invert_shooting_particles():
 	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + aiming_arm_offset_when_flip_h, particles_shoot.position.y)
 	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
+	$RayCast2DShoot.position = particles_shoot.position
+	$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
 
 #This function sets a new target speed and gradually changes towards that value.
 func change_char_x_speed(newspeed):
@@ -436,6 +441,9 @@ func change_char_x_speed(newspeed):
 		char_speed.x += char_acceleration.x
 	elif char_speed.x > target_speed:
 		char_speed.x -= char_acceleration.x
+	
+	if abs(char_speed.x) < char_acceleration.x:
+		char_speed.x = 0
 	
 	pass
 
@@ -467,6 +475,17 @@ func resolve_look_direction():
 	
 	if current_state == State.AIMING:
 		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
+			$RayCast2DShoot.position = particles_shoot.position
+			$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
+			look_to_the_right(true)
+		else:
+			invert_shooting_particles()
+			look_to_the_right(false)
+	
+	if current_state == State.SHOOTING:
+		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
+			$RayCast2DShoot.position = particles_shoot.position
+			$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
 			look_to_the_right(true)
 		else:
 			invert_shooting_particles()
@@ -511,7 +530,13 @@ func _on_cura2D_priest_shoot():
 
 func raycast_test():
 	if $RayCast2D.is_colliding() and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP:
-		char_speed.y = 0
+		var collision_point = $RayCast2D.get_collision_point()
+		
+		#char_speed.y = 0
+		#position = Vector2(position.x, collision_point.y - $CollisionShape2D.shape.height)
 		ground = true
 	else:
 		ground = false
+
+func _on_ShootTimer_timeout():
+	change_state(State.IDLE)

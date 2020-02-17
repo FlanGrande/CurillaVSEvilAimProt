@@ -23,6 +23,8 @@ func _process(delta):
 	var current_state = get_parent().current_state
 	var current_speed = get_parent().char_speed
 	var current_ground = get_parent().ground
+	var current_mouse_position = get_parent().mouse_position
+	var current_cast_position = get_parent().get_node("RayCast2DShoot").cast_to
 	
 	match current_state:
 		State.IDLE:
@@ -49,7 +51,8 @@ func _process(delta):
 		State.HORIZONTAL_JUMP:
 			current_state = "HORIZONTAL_JUMP"
 		
-		State.GRABBING:			current_state = "GRABBING"
+		State.GRABBING:
+			current_state = "GRABBING"
 		
 		State.CLIMBING:
 			current_state = "CLIMBING"
@@ -57,3 +60,5 @@ func _process(delta):
 	$txtState.text = str(current_state)
 	$txtSpeed.text = str(current_speed)
 	$txtOnFloor.text = str(current_ground)
+	$txtMousePos.text = str(current_mouse_position)
+	$txtCastPos.text = str(current_cast_position)
