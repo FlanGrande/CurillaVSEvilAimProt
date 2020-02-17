@@ -1,0 +1,56 @@
+[gd_scene format=2]
+
+[node name="Container2" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="lblState" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 56.0
+margin_bottom = 30.0
+text = "State:"
+valign = 1
+
+[node name="txtState" type="Label" parent="."]
+margin_left = 96.0
+margin_top = 16.0
+margin_right = 208.0
+margin_bottom = 30.0
+text = "[STATE]"
+align = 2
+valign = 1
+
+[node name="lblSpeed" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 30.0
+margin_right = 56.0
+margin_bottom = 44.0
+text = "Speed:"
+valign = 1
+
+[node name="txtSpeed" type="Label" parent="."]
+margin_left = 96.0
+margin_top = 30.0
+margin_right = 208.0
+margin_bottom = 44.0
+text = "[SPEED]"
+align = 2
+valign = 1
+
+[node name="lblOnFloor" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 44.0
+margin_right = 59.0
+margin_bottom = 58.0
+text = "Ground:"
+valign = 1
+
+[node name="txtOnFloor" type="Label" parent="."]
+margin_left = 96.0
+margin_top = 44.0
+margin_right = 208.0
+margin_bottom = 58.0
+text = "[GROUND]"
+align = 2
+valign = 1

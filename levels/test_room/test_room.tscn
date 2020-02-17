@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/sistema_apuntado_prototipo.gd" type="Script" id=1]
 [ext_resource path="res://environment/bg/pixelart-1534694408649-5873.jpg" type="Texture" id=2]
 [ext_resource path="res://environment/platform/Platform.tscn" type="PackedScene" id=3]
 [ext_resource path="res://characters/cura/curilla2D_FSM.tscn" type="PackedScene" id=4]
-[ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=5]
-[ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://debug/Debug_Label.tscn" type="PackedScene" id=5]
+[ext_resource path="res://debug/Debug_Label.gd" type="Script" id=6]
+[ext_resource path="res://shaders/fog_shader.shader" type="Shader" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1024.08, 31.4251 )
@@ -19,7 +21,7 @@ extents = Vector2( 12.5638, 556.621 )
 [sub_resource type="Environment" id=4]
 
 [sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 5 )
+shader = ExtResource( 7 )
 shader_param/color = Vector3( 0.3, 0.45, 0.6 )
 shader_param/OCTAVES = 4
 
@@ -100,13 +102,22 @@ position = Vector2( -152.471, 393.05 )
 position = Vector2( -170.37, 370.855 )
 
 [node name="Platform18" parent="Container/Platforms" instance=ExtResource( 3 )]
-position = Vector2( 70.8571, 290.552 )
+position = Vector2( 94.4847, 289.836 )
 
 [node name="Platform19" parent="Container/Platforms" instance=ExtResource( 3 )]
 position = Vector2( 728.908, 278.493 )
 
 [node name="cura2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1368.27, 474.203 )
+
+[node name="Container3" parent="cura2D" instance=ExtResource( 5 )]
+visible = false
+margin_left = -103.035
+margin_top = -41.1327
+margin_right = -63.0354
+margin_bottom = -1.13269
+rect_scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 6 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
@@ -115,4 +126,4 @@ environment = SubResource( 4 )
 material = SubResource( 5 )
 position = Vector2( 1084.34, 185.301 )
 scale = Vector2( 35.0173, 13.8811 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
