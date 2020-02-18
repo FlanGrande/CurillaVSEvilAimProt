@@ -1,13 +1,14 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/curilla2D.gd" type="Script" id=1]
-[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=2]
+[ext_resource path="res://characters/cura/aim_body.png" type="Texture" id=2]
 [ext_resource path="res://characters/cura/aim_arm.png" type="Texture" id=3]
-[ext_resource path="res://characters/cura/aim_body.png" type="Texture" id=4]
+[ext_resource path="res://tres_files/aim_body.tres" type="Texture" id=4]
 [ext_resource path="res://characters/cura/horizontal_jump.png" type="Texture" id=5]
 [ext_resource path="res://animation/idle.tres" type="Animation" id=6]
 [ext_resource path="res://characters/cura/run.png" type="Texture" id=7]
 [ext_resource path="res://animation/walk.tres" type="Animation" id=8]
+[ext_resource path="res://shaders/shooting_trail.tres" type="Material" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0, 1 )
@@ -49,7 +50,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -157,7 +158,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 23.7682, -24.8405 ) ]
+"values": [ Vector2( 23, -24 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -184,7 +185,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -292,7 +293,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.330326, 2.97733 ) ]
+"values": [ Vector2( -1.67892, 4.41807 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -319,7 +320,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -454,7 +455,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -562,7 +563,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 5.75796, 2.03075 ) ]
+"values": [ Vector2( 4.75752, 2.24247 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -589,7 +590,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -697,7 +698,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 14.4191, -2.17686 ) ]
+"values": [ Vector2( 13, -1 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -724,7 +725,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -832,7 +833,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 18.9524, -6.50165 ) ]
+"values": [ Vector2( 18, -5 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -859,7 +860,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -967,7 +968,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 22.6296, -18.7766 ) ]
+"values": [ Vector2( 22, -17 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -994,7 +995,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1129,7 +1130,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1264,7 +1265,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1372,7 +1373,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 6.06697, -42.9294 ) ]
+"values": [ Vector2( 5, -44 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1399,7 +1400,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1507,7 +1508,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 2.31803, -45.0438 ) ]
+"values": [ Vector2( 1, -45 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -1534,7 +1535,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 4 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:vframes")
@@ -1642,7 +1643,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -1.72459, -48.7587 ) ]
+"values": [ Vector2( -3.71286, -49.0497 ) ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("Particles_shoot:rotation_degrees")
@@ -2176,12 +2177,11 @@ __meta__ = {
 position = Vector2( -2.42255, -13.8746 )
 texture = ExtResource( 2 )
 hframes = 6
-frame = 1
 region_rect = Rect2( 5, 0, 21, 41 )
 
 [node name="Particles_shoot" type="Particles2D" parent="."]
-position = Vector2( 22.6296, -18.7766 )
-rotation = 0.174533
+position = Vector2( 4.75752, 2.24247 )
+rotation = 1.22173
 emitting = false
 amount = 16
 lifetime = 0.3
@@ -2196,7 +2196,7 @@ visible = false
 position = Vector2( -2.209, -20 )
 texture = ExtResource( 3 )
 hframes = 12
-frame = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.7782, -6 )
@@ -2252,11 +2252,17 @@ cast_to = Vector2( 0, 32 )
 [node name="RayCast2DShoot" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 0 )
-collide_with_bodies = false
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="Line2D_ShootingTrail" type="Line2D" parent="."]
+visible = false
+material = ExtResource( 9 )
+points = PoolVector2Array( 0, 0, 10, 10 )
+width = 0.6
+default_color = Color( 1, 0.992157, 0.768627, 1 )
 [connection signal="priest_shoot" from="." to="." method="_on_cura2D_priest_shoot"]
 [connection signal="body_entered" from="ClimbCollider" to="." method="_on_ClimbCollider_body_entered"]
 [connection signal="body_exited" from="ClimbCollider" to="." method="_on_ClimbCollider_body_exited"]

@@ -93,6 +93,7 @@ position = Vector2( 728.908, 278.493 )
 position = Vector2( 1368.27, 474.203 )
 
 [node name="Container3" parent="cura2D" instance=ExtResource( 5 )]
+visible = false
 margin_left = -103.035
 margin_top = -41.1327
 margin_right = -63.0354

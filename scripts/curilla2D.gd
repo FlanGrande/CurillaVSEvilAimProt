@@ -62,6 +62,11 @@ var x_vector = Vector2(1, 0)
 var angles_array = [] #Array that contains the keys of the angles_dict variable. Represents the available angles to pick from animations.
 var aiming_arm_offset_when_flip_h = -4
 
+# shooting system variables
+const INITIAL_TRAIL_OPACITY = 1.0
+const SHOOTING_TRAIL_DECAY = 0.05
+var current_trail_opacity = INITIAL_TRAIL_OPACITY
+
 var can_grab = false #Is there a collision happening that allows a grab? If grab button is press, grab to that ledge!
 var climbable_body = {} #This is the body that can be grabbed. e_e
 var ground = false #Is character touching floor?
@@ -128,11 +133,6 @@ func _process(delta):
 	if(position.y > window.size.y):
 		respawn()
 	
-	pass
-
-func _draw():
-	#if current_state == State.SHOOTING:
-	#	$RayCast2DShoot.draw_line($RayCast2DShoot.position, $RayCast2DShoot.cast_to * 10, Color(255, 255, 255), 2.0, true)
 	pass
 
 func handle_input():
@@ -268,7 +268,7 @@ func update():
 		
 		State.SHOOTING:
 			aim_checks()
-			#change_anim("aim0")
+			set_shooting_trail_opacity(current_trail_opacity - SHOOTING_TRAIL_DECAY)
 			pass
 		
 		State.VERTICAL_JUMP:
@@ -349,6 +349,13 @@ func run():
 func shoot():
 	particles_shoot.emitting = true
 	$ShootTimer.start()
+	$Line2D_ShootingTrail.points[0] = $RayCast2DShoot.position
+	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.cast_to
+	$Line2D_ShootingTrail.visible = true
+	
+	#if $RayCast2DShoot.is_colliding():
+	#	print($RayCast2DShoot.get_collision_point()-$RayCast2DShoot.get_collider().global_position)
+	#	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.position
 
 func vertical_jump():
 	#If not running, do vertical jump. This is a Prince of Persia style jump that initiates climbing.
@@ -430,8 +437,6 @@ func camera_checks():
 func invert_shooting_particles():
 	particles_shoot.position = Vector2(particles_shoot.position.x * -1 + aiming_arm_offset_when_flip_h, particles_shoot.position.y)
 	particles_shoot.rotation = particles_shoot.rotation * -1 - 180 * PI/180	#convert 180 degrees to radians
-	$RayCast2DShoot.position = particles_shoot.position
-	$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
 
 #This function sets a new target speed and gradually changes towards that value.
 func change_char_x_speed(newspeed):
@@ -475,17 +480,15 @@ func resolve_look_direction():
 	
 	if current_state == State.AIMING:
 		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
-			$RayCast2DShoot.position = particles_shoot.position
-			$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
+			update_RayCast2DShoot()
 			look_to_the_right(true)
 		else:
 			invert_shooting_particles()
+			update_RayCast2DShoot()
 			look_to_the_right(false)
 	
 	if current_state == State.SHOOTING:
 		if(angle_to_vector_x_degrees < 90 or angle_to_vector_x_degrees > 270):
-			$RayCast2DShoot.position = particles_shoot.position
-			$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
 			look_to_the_right(true)
 		else:
 			invert_shooting_particles()
@@ -496,6 +499,11 @@ func look_to_the_right(enabled):
 	right = enabled
 	get_node("Sprite").set_flip_h(not enabled)
 	get_node("aiming_arm").set_flip_h(not enabled)
+
+#Point shooting ray cast from the gun to the mouse (and then to "infinite" as well). Depends on particles_shoot position.
+func update_RayCast2DShoot():
+	$RayCast2DShoot.position = particles_shoot.position
+	$RayCast2DShoot.cast_to = (get_local_mouse_position() - $RayCast2DShoot.position) * get_viewport().size.x
 
 func decelerate():
 	if current_state != State.HORIZONTAL_JUMP and current_state != State.VERTICAL_JUMP and current_state == State.FALLING or not input_x:
@@ -533,10 +541,17 @@ func raycast_test():
 		var collision_point = $RayCast2D.get_collision_point()
 		
 		#char_speed.y = 0
-		#position = Vector2(position.x, collision_point.y - $CollisionShape2D.shape.height)
+		position = Vector2(position.x, collision_point.y - $CollisionShape2D.shape.height)
 		ground = true
 	else:
 		ground = false
 
+func set_shooting_trail_opacity(opacity):
+	var shooting_trail_material = $Line2D_ShootingTrail.get_material()
+	shooting_trail_material.set_shader_param("opacity", current_trail_opacity)
+	current_trail_opacity = opacity
+
 func _on_ShootTimer_timeout():
+	$Line2D_ShootingTrail.visible = false
+	set_shooting_trail_opacity(INITIAL_TRAIL_OPACITY)
 	change_state(State.IDLE)
