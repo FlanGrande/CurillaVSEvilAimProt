@@ -11,8 +11,8 @@
 [ext_resource path="res://shaders/shooting_trail.tres" type="Material" id=9]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0, 1 )
-colors = PoolColorArray( 1, 0, 0, 1, 0.992188, 1, 0, 0.784549, 1, 0.375, 0, 0.535922 )
+offsets = PoolRealArray( 0, 9.64289e-039, 1.04694e-038, 0.4 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 0.862745, 0.784314, 1, 0.984314, 0.631373, 0.537255, 1, 0.998141, 0.956311, 0.945156 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -20,19 +20,19 @@ width = 1024
 
 [sub_resource type="ParticlesMaterial" id=3]
 flag_disable_z = true
-spread = 30.0
+spread = 90.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 20.0
-initial_velocity_random = 0.2
-angular_velocity = 1.0
+initial_velocity = 100.0
+initial_velocity_random = 0.8
+angular_velocity = 30.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = -100.0
+linear_accel = -400.0
 angle = 45.0
 angle_random = 0.5
-scale = 1.5
 scale_random = 1.0
 color_ramp = SubResource( 2 )
+hue_variation_random = 0.1
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 10.778
@@ -2183,11 +2183,12 @@ region_rect = Rect2( 5, 0, 21, 41 )
 position = Vector2( 4.75752, 2.24247 )
 rotation = 1.22173
 emitting = false
-amount = 16
-lifetime = 0.3
+amount = 32
+lifetime = 0.2
 one_shot = true
 speed_scale = 2.0
-explosiveness = 0.6
+explosiveness = 1.0
+randomness = 0.2
 fixed_fps = 60
 process_material = SubResource( 3 )
 
@@ -2244,7 +2245,7 @@ position = Vector2( -3.00314, -51.053 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClimbCollider"]
 shape = SubResource( 24 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2DFloor" type="RayCast2D" parent="."]
 position = Vector2( -2.778, -8 )
 enabled = true
 cast_to = Vector2( 0, 32 )
@@ -2261,8 +2262,10 @@ one_shot = true
 visible = false
 material = ExtResource( 9 )
 points = PoolVector2Array( 0, 0, 10, 10 )
-width = 0.6
+width = 1.0
 default_color = Color( 1, 0.992157, 0.768627, 1 )
+texture_mode = 1064076126
+joint_mode = 2
 [connection signal="priest_shoot" from="." to="." method="_on_cura2D_priest_shoot"]
 [connection signal="body_entered" from="ClimbCollider" to="." method="_on_ClimbCollider_body_entered"]
 [connection signal="body_exited" from="ClimbCollider" to="." method="_on_ClimbCollider_body_exited"]

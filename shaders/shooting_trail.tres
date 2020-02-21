@@ -5,3 +5,5 @@
 [resource]
 shader = ExtResource( 1 )
 shader_param/opacity = 1.0
+shader_param/OCTAVES = 4
+shader_param/aiming_angle = 0.0

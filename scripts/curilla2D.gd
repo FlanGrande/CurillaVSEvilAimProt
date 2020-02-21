@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-# Find a better solution for sliding
+# Find a better solution for sliding.
+# Bug on aiming between the edge cases. Maybe some floor or min max would help. fixed?
+# Avoid shooting on inner circle. To avoid shooting yourself.
 
 signal priest_shoot
 
@@ -42,7 +44,7 @@ const MAX_SPEED_HORIZONTAL_JUMP = Vector2(200, 400) #Character maximum allowed s
 const MAX_SPEED_VERTICAL_JUMP = Vector2(0, 500) #Character maximum allowed speed when jumping while standing still
 var max_speed = Vector2(MAX_SPEED_WALK, 500) #Current max_speed
 var target_speed = 0 #speed will change speed gradually towards this value
-var char_acceleration = Vector2(6.2, 4.0) #Character x movement and gravity
+var char_acceleration = Vector2(6.2, 5.2) #Character x movement and gravity
 var char_deceleration = Vector2(5, 12) #Character x movement and gravity
 #var char_jump_acceleration = Vector2(200, 700) #Character acceleration
 var horizontal_jump_speed = Vector2(50, 250)
@@ -60,11 +62,15 @@ var angle_to_vector_x_radians = 0
 var angle_to_vector_x_degrees = 0
 var x_vector = Vector2(1, 0)
 var angles_array = [] #Array that contains the keys of the angles_dict variable. Represents the available angles to pick from animations.
-var aiming_arm_offset_when_flip_h = -4
+var aiming_arm_offset_when_flip_h = -6
 
 # shooting system variables
-const INITIAL_TRAIL_OPACITY = 1.0
-const SHOOTING_TRAIL_DECAY = 0.05
+const INITIAL_TRAIL_OPACITY = 0.66
+const SHOOTING_TRAIL_DECAY = 0.004
+
+const INITIAL_TRAIL_WIDTH = 1.0
+const SHOOTING_WIDTH_EXPAND_RATE = 0.02
+
 var current_trail_opacity = INITIAL_TRAIL_OPACITY
 
 var can_grab = false #Is there a collision happening that allows a grab? If grab button is press, grab to that ledge!
@@ -76,31 +82,31 @@ var ground = false #Is character touching floor?
 #E.g. if angle > 85 and angle < 105, use "aim90"
 var angles_dict = {
 	"0": "aim0",
-	"20": "aim30",
+	"10": "aim30",
 	"35": "aim45",
 	"55" : "aim60",
 	"65" : "aim70",
 	"75" : "aim80",
 	"85" : "aim90",
-	"95" : "aim90",
-	"105" : "aim80",
-	"115" : "aim70",
+	"90" : "aim90",
+	"95" : "aim80",
+	"105" : "aim70",
 	"125" : "aim60",
-	"145" : "aim45",
-	"160" : "aim30",
-	"180" : "aim0",
-	"195" : "aim350",
+	"140" : "aim45",
+	"150" : "aim30",
+	"175" : "aim0",
+	"190" : "aim350",
 	"205" : "aim350",
-	"220" : "aim330",
+	"215" : "aim330",
 	"230" : "aim315",
-	"250" : "aim300",
-	"260": "aim270",
-	"280" : "aim270",
-	"290": "aim300",
-	"310" : "aim315",
-	"320" : "aim330",
-	"335" : "aim350",
-	"345" : "aim350"
+	"245" : "aim300",
+	"265": "aim270",
+	"270" : "aim270",
+	"275": "aim300",
+	"300" : "aim315",
+	"310" : "aim330",
+	"325" : "aim350",
+	"350" : "aim350"
 }
 
 #shooting variables
@@ -114,14 +120,14 @@ var elapsed_time = 0.0
 func _ready():
 	#change_anim("idle")
 	change_state(State.FALLING)
+	set_shooting_trail_opacity(INITIAL_TRAIL_OPACITY)
+	$Line2D_ShootingTrail.width = INITIAL_TRAIL_WIDTH
 	pass
 
 func _process(delta):
 	handle_input()
 	update()
 	after_update()
-	
-	print(current_state)
 	
 	elapsed_time += delta
 	
@@ -138,8 +144,8 @@ func _process(delta):
 func handle_input():
 	match current_state:
 		State.IDLE:
-			#if is_on_floor() and Input.is_action_just_pressed("ui_up"): #Up was pressed
-			if ground and Input.is_action_just_pressed("ui_up"): #Up was pressed
+			if is_on_floor() and Input.is_action_just_pressed("ui_up"): #Up was pressed
+			#if ground and Input.is_action_just_pressed("ui_up"): #Up was pressed
 				change_state(State.VERTICAL_JUMP)
 				vertical_jump()
 			elif Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
@@ -153,7 +159,7 @@ func handle_input():
 			move()
 			walk()
 			
-			if ground and Input.is_action_just_pressed("ui_up"): #Up was pressed
+			if is_on_floor() and Input.is_action_just_pressed("ui_up"): #Up was pressed
 				change_state(State.VERTICAL_JUMP)
 				vertical_jump()
 			
@@ -185,9 +191,10 @@ func handle_input():
 			pass
 		
 		State.AIMING:
-			if(Input.is_action_just_pressed("shoot")): #Up was pressed
-				change_state(State.SHOOTING)
-				emit_signal("priest_shoot")
+			if Input.is_action_just_pressed("shoot"): #Shoot was pressed
+				if get_global_mouse_position().distance_to(Vector2(global_position.x, global_position.y + shoulder_offset)) > 40.0: # This limits the distance you can shoot from, if the mouse is too close to the character, he won't shoot.
+					change_state(State.SHOOTING)
+					emit_signal("priest_shoot")
 			
 			if(not Input.is_action_pressed("aim")):
 				change_state(State.IDLE)
@@ -259,8 +266,7 @@ func update():
 		State.FALLING:
 			change_anim("falling")
 			
-			#if is_on_floor() and char_speed.y < char_acceleration.y * 6:
-			if ground and char_speed.y < char_acceleration.y * 6:
+			if is_on_floor() and char_speed.y < char_acceleration.y * 6:
 				change_state(State.IDLE)
 		
 		State.AIMING:
@@ -269,9 +275,12 @@ func update():
 		State.SHOOTING:
 			aim_checks()
 			set_shooting_trail_opacity(current_trail_opacity - SHOOTING_TRAIL_DECAY)
+			set_shooting_shader_angle(angle_to_vector_x_radians)
+			$Line2D_ShootingTrail.width = $Line2D_ShootingTrail.width + SHOOTING_WIDTH_EXPAND_RATE
 			pass
 		
 		State.VERTICAL_JUMP:
+			#change_anim("vertical_jump")
 			char_speed.x = 0
 			pass
 		
@@ -286,8 +295,7 @@ func update():
 				can_grab = false
 				change_state(State.CLIMBING)
 			
-			#if is_on_floor():
-			if ground:
+			if is_on_floor():
 				change_state(State.IDLE)
 		
 		State.CLIMBING:
@@ -307,14 +315,13 @@ func after_update():
 	if current_state != State.CLIMBING:
 		air_checks()
 	
-	raycast_test()
-	
 	resolve_look_direction()
 	
 	#Max playback_animation_speed
 	if playback_animation_speed > MAX_ANIMATION_PLAYBACK_SPEED:
 		change_anim_speed(MAX_ANIMATION_PLAYBACK_SPEED)
 	
+	#Min playback_animation_speed
 	if playback_animation_speed < MIN_ANIMATION_PLAYBACK_SPEED:
 		change_anim_speed(MIN_ANIMATION_PLAYBACK_SPEED)
 	
@@ -353,13 +360,17 @@ func shoot():
 	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.cast_to
 	$Line2D_ShootingTrail.visible = true
 	
+	# Bullet hit wall. It doesn't work.
+	if $RayCast2DShoot.is_colliding():
+		$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.global_position
+	
+	#This doesn't work either.
 	#if $RayCast2DShoot.is_colliding():
 	#	print($RayCast2DShoot.get_collision_point()-$RayCast2DShoot.get_collider().global_position)
 	#	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.position
 
 func vertical_jump():
 	#If not running, do vertical jump. This is a Prince of Persia style jump that initiates climbing.
-	#change_anim("horizontal_jump")
 	max_speed = Vector2(0,  MAX_SPEED_VERTICAL_JUMP.y)
 	char_speed.y = -1 * vertical_jump_speed
 	char_speed.x = 0
@@ -389,8 +400,8 @@ func air_checks():
 	if(test_move(get_transform(), Vector2(1, 0)) or test_move(get_transform(), Vector2(-1, 0)) and char_speed.y > 0):
 		change_char_x_speed(0)
 	
-	#if(is_on_floor() and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP):
-	if(ground and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP):
+	if(is_on_floor() and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP):
+	#if(ground and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP):
 		#change_state(State.IDLE)
 		char_speed.y = 0
 	else:
@@ -404,8 +415,8 @@ func aim_checks():
 	if current_state != State.SHOOTING: mouse_position = get_global_mouse_position() # Don't update mouse position during a gunshot
 	priest_shoulder = Vector2(global_position.x, global_position.y + shoulder_offset)
 	aiming_vector = mouse_position - priest_shoulder
-	angle_to_vector_x_radians = (aiming_vector).normalized()
-	angle_to_vector_x_degrees = angle_to_vector_x_radians.angle_to(x_vector) * 180/PI #Convert radians to angles
+	angle_to_vector_x_radians = (aiming_vector).normalized().angle_to(x_vector)
+	angle_to_vector_x_degrees = angle_to_vector_x_radians * 180/PI #Convert radians to angles
 	angles_array = angles_dict.keys()
 	
 	if(angle_to_vector_x_degrees < 0): #If angle to X axis is less than 0, add 360 degrees to make it positive
@@ -503,7 +514,10 @@ func look_to_the_right(enabled):
 #Point shooting ray cast from the gun to the mouse (and then to "infinite" as well). Depends on particles_shoot position.
 func update_RayCast2DShoot():
 	$RayCast2DShoot.position = particles_shoot.position
-	$RayCast2DShoot.cast_to = (get_local_mouse_position() - $RayCast2DShoot.position) * get_viewport().size.x
+	$RayCast2DShoot.cast_to = get_local_mouse_position() - $RayCast2DShoot.position
+	
+	while($RayCast2DShoot.cast_to.distance_to($RayCast2DShoot.position) < get_viewport().size.x):
+		$RayCast2DShoot.cast_to = $RayCast2DShoot.cast_to * 2.0
 
 func decelerate():
 	if current_state != State.HORIZONTAL_JUMP and current_state != State.VERTICAL_JUMP and current_state == State.FALLING or not input_x:
@@ -536,22 +550,29 @@ func _on_ClimbCollider_body_exited(body):
 func _on_cura2D_priest_shoot():
 	shoot()
 
-func raycast_test():
-	if $RayCast2D.is_colliding() and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP:
-		var collision_point = $RayCast2D.get_collision_point()
+func is_on_floor():
+	if $RayCast2DFloor.is_colliding() and current_state != State.VERTICAL_JUMP and current_state != State.HORIZONTAL_JUMP:
+		var collision_point = $RayCast2DFloor.get_collision_point()
 		
 		#char_speed.y = 0
-		position = Vector2(position.x, collision_point.y - $CollisionShape2D.shape.height)
+		position = Vector2(position.x, collision_point.y - $CollisionShape2D.shape.height + 1.0) #1.0 is a rudimentary safe margin
 		ground = true
 	else:
 		ground = false
+	
+	return ground
 
 func set_shooting_trail_opacity(opacity):
 	var shooting_trail_material = $Line2D_ShootingTrail.get_material()
 	shooting_trail_material.set_shader_param("opacity", current_trail_opacity)
 	current_trail_opacity = opacity
 
+func set_shooting_shader_angle(angle):
+	var shooting_trail_material = $Line2D_ShootingTrail.get_material()
+	shooting_trail_material.set_shader_param("aiming_angle", angle)
+
 func _on_ShootTimer_timeout():
 	$Line2D_ShootingTrail.visible = false
 	set_shooting_trail_opacity(INITIAL_TRAIL_OPACITY)
+	$Line2D_ShootingTrail.width = INITIAL_TRAIL_WIDTH
 	change_state(State.IDLE)

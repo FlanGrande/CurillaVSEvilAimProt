@@ -1,93 +1,47 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://debug/Debug_Label.gd" type="Script" id=1]
+[ext_resource path="res://debug/DebugEntry.tscn" type="PackedScene" id=2]
 
 [node name="Container2" type="Control"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 1 )
 
-[node name="lblState" type="Label" parent="."]
-margin_left = 16.0
+[node name="dbgState" parent="." instance=ExtResource( 2 )]
+label = "State"
+
+[node name="dbgSpeed" parent="." instance=ExtResource( 2 )]
 margin_top = 16.0
-margin_right = 56.0
-margin_bottom = 30.0
-text = "State:"
-valign = 1
+margin_bottom = 56.0
+label = "Speed"
 
-[node name="txtState" type="Label" parent="."]
-margin_left = 96.0
-margin_top = 16.0
-margin_right = 208.0
-margin_bottom = 30.0
-text = "[STATE]"
-align = 2
-valign = 1
-
-[node name="lblSpeed" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 30.0
-margin_right = 56.0
-margin_bottom = 44.0
-text = "Speed:"
-valign = 1
-
-[node name="txtSpeed" type="Label" parent="."]
-margin_left = 96.0
-margin_top = 30.0
-margin_right = 208.0
-margin_bottom = 44.0
-text = "[SPEED]"
-align = 2
-valign = 1
-
-[node name="lblOnFloor" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 44.0
-margin_right = 59.0
-margin_bottom = 58.0
-text = "Ground:"
-valign = 1
-
-[node name="txtOnFloor" type="Label" parent="."]
-margin_left = 96.0
-margin_top = 44.0
-margin_right = 208.0
-margin_bottom = 58.0
-text = "[GROUND]"
-align = 2
-valign = 1
-
-[node name="lblMousePos" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 58.0
-margin_right = 67.0
+[node name="dbgOnFloor" parent="." instance=ExtResource( 2 )]
+margin_top = 32.0
 margin_bottom = 72.0
-text = "Mouse"
-valign = 1
+label = "OnFloor"
 
-[node name="txtMousePos" type="Label" parent="."]
-margin_left = 96.0
-margin_top = 58.0
-margin_right = 208.0
-margin_bottom = 72.0
-text = "[MOUSE]"
-align = 2
-valign = 1
+[node name="dbgLocalMousePos" parent="." instance=ExtResource( 2 )]
+margin_top = 48.0
+margin_bottom = 88.0
+label = "LMousePos"
 
-[node name="lblCastPos" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 72.0
-margin_right = 67.0
-margin_bottom = 86.0
-text = "Cast:"
-valign = 1
+[node name="dbgGlobalMousePos" parent="." instance=ExtResource( 2 )]
+margin_top = 64.0
+margin_bottom = 104.0
+label = "GMousePos"
 
-[node name="txtCastPos" type="Label" parent="."]
-margin_left = 96.0
-margin_top = 72.0
-margin_right = 208.0
-margin_bottom = 86.0
-text = "[CAST]"
-align = 2
-valign = 1
+[node name="dbgCastPos" parent="." instance=ExtResource( 2 )]
+margin_top = 80.0
+margin_bottom = 120.0
+label = "CastPos"
+
+[node name="dbgAnimation" parent="." instance=ExtResource( 2 )]
+margin_top = 96.0
+margin_bottom = 136.0
+label = "Animation"
+
+[node name="dbgAimingAngle" parent="." instance=ExtResource( 2 )]
+margin_top = 112.0
+margin_bottom = 152.0
+label = "AimingAngle"

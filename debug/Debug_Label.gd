@@ -23,8 +23,14 @@ func _process(delta):
 	var current_state = get_parent().current_state
 	var current_speed = get_parent().char_speed
 	var current_ground = get_parent().ground
-	var current_mouse_position = get_parent().mouse_position
-	var current_cast_position = get_parent().get_node("RayCast2DShoot").cast_to
+	var current_mouse_position_x = get_parent().get_local_mouse_position().x
+	var current_mouse_position_y = get_parent().get_local_mouse_position().y
+	var current_global_mouse_position_x = get_parent().get_global_mouse_position().x
+	var current_global_mouse_position_y = get_parent().get_global_mouse_position().y
+	var current_cast_position_x = get_parent().get_node("RayCast2DShoot").cast_to.x
+	var current_cast_position_y = get_parent().get_node("RayCast2DShoot").cast_to.y
+	var current_animation = get_parent().get_node("AnimationPlayer").get_current_animation()
+	var aiming_angle = get_parent().angle_to_vector_x_degrees
 	
 	match current_state:
 		State.IDLE:
@@ -57,8 +63,11 @@ func _process(delta):
 		State.CLIMBING:
 			current_state = "CLIMBING"
 	
-	$txtState.text = str(current_state)
-	$txtSpeed.text = str(current_speed)
-	$txtOnFloor.text = str(current_ground)
-	$txtMousePos.text = str(current_mouse_position)
-	$txtCastPos.text = str(current_cast_position)
+	$dbgState.set_debug_value(str(current_state))
+	$dbgSpeed.set_debug_value(str(current_speed))
+	$dbgOnFloor.set_debug_value(str(current_ground))
+	$dbgLocalMousePos.set_debug_value(str(current_mouse_position_x).pad_decimals(2) + ", " + str(current_mouse_position_y).pad_decimals(2))
+	$dbgGlobalMousePos.set_debug_value(str(current_global_mouse_position_x).pad_decimals(2) + ", " + str(current_global_mouse_position_y).pad_decimals(2))
+	$dbgCastPos.set_debug_value(str(current_cast_position_x).pad_decimals(2) + ", " + str(current_cast_position_y).pad_decimals(2))
+	$dbgAnimation.set_debug_value(str(current_animation))
+	$dbgAimingAngle.set_debug_value(str(aiming_angle))
