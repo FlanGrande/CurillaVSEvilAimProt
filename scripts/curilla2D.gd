@@ -8,18 +8,19 @@ signal priest_shoot
 
 # States
 enum State {
-	IDLE,
-	WALKING,
-	RUNNING,
-	FALLING,
-	AIMING,
-	SHOOTING,
-	VERTICAL_JUMP,
-	HORIZONTAL_JUMP,
-	GRABBING,
-	CLIMBING
+	IDLE, # Doing nothing.
+	WALKING, # Walking slowly. Movement states are based on speed.
+	RUNNING, # Running.
+	FALLING, # Falling, after certain actions or when building some speed down.
+	AIMING, # Aiming around the character.
+	SHOOTING, # Shooting a bullet.
+	VERTICAL_JUMP, # Jumping on y axis.
+	HORIZONTAL_JUMP, # Jumiping with x movement.
+	GRABBING, # Grabbing while on air.
+	CLIMBING # Holding a ledge.
 }
 
+# Everyone starts by falling, innit? :)
 var current_state = State.FALLING
 
 # general variables
@@ -68,8 +69,8 @@ var aiming_arm_offset_when_flip_h = -6
 const INITIAL_TRAIL_OPACITY = 0.66
 const SHOOTING_TRAIL_DECAY = 0.004
 
-const INITIAL_TRAIL_WIDTH = 1.0
-const SHOOTING_WIDTH_EXPAND_RATE = 0.02
+const INITIAL_TRAIL_WIDTH = 0.6
+const SHOOTING_WIDTH_EXPAND_RATE = 0.04
 
 var current_trail_opacity = INITIAL_TRAIL_OPACITY
 
@@ -82,7 +83,7 @@ var ground = false #Is character touching floor?
 #E.g. if angle > 85 and angle < 105, use "aim90"
 var angles_dict = {
 	"0": "aim0",
-	"10": "aim30",
+	"5": "aim30",
 	"35": "aim45",
 	"55" : "aim60",
 	"65" : "aim70",
@@ -361,10 +362,9 @@ func shoot():
 	$Line2D_ShootingTrail.visible = true
 	
 	# Bullet hit wall. It doesn't work.
-	if $RayCast2DShoot.is_colliding():
-		$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.global_position
+	#if $RayCast2DShoot.is_colliding():
+	#	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.global_position
 	
-	#This doesn't work either.
 	#if $RayCast2DShoot.is_colliding():
 	#	print($RayCast2DShoot.get_collision_point()-$RayCast2DShoot.get_collider().global_position)
 	#	$Line2D_ShootingTrail.points[1] = $RayCast2DShoot.get_collision_point() - $RayCast2DShoot.position
